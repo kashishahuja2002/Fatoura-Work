@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_16" data-name="Rectangle 16" width="18" height="18" transform="translate(30 105)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_456" data-name="Mask Group 456" transform="translate(-30 -105)" clip-path="url(#clip-path)">
+    <g id="google-docs_1_" data-name="google-docs (1)" transform="translate(30 105)">
+      <path id="Path_4255" data-name="Path 4255" d="M3.727,18H14.273a1.584,1.584,0,0,0,1.582-1.582V5.273H12.164a1.584,1.584,0,0,1-1.582-1.582V0H3.727A1.584,1.584,0,0,0,2.145,1.582V16.418A1.584,1.584,0,0,0,3.727,18ZM5.836,7.418h6.328a.527.527,0,0,1,0,1.055H5.836a.527.527,0,0,1,0-1.055Zm0,2.109h6.328a.527.527,0,0,1,0,1.055H5.836a.527.527,0,0,1,0-1.055Zm0,2.109h6.328a.527.527,0,0,1,0,1.055H5.836a.527.527,0,0,1,0-1.055Zm0,2.109h4.219a.527.527,0,0,1,0,1.055H5.836a.527.527,0,0,1,0-1.055Z" fill="#fff"/>
+      <path id="Path_4256" data-name="Path 4256" d="M12.164,4.219h3.382L11.637.309V3.691A.528.528,0,0,0,12.164,4.219Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>
