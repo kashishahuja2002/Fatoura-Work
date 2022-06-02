@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_16" data-name="Rectangle 16" width="18" height="18" transform="translate(30 103.38)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_392" data-name="Mask Group 392" transform="translate(-30 -103.38)" clip-path="url(#clip-path)">
+    <g id="google-docs" transform="translate(32.19 103.38)">
+      <path id="Path_4079" data-name="Path 4079" d="M16.226,4.373,11.918.155A.545.545,0,0,0,11.537,0H4A1.6,1.6,0,0,0,2.383,1.582V16.418A1.6,1.6,0,0,0,4,18h10.77a1.6,1.6,0,0,0,1.615-1.582V4.746A.527.527,0,0,0,16.226,4.373ZM12.076,1.8l2.469,2.418H12.614a.534.534,0,0,1-.538-.527Zm2.692,15.145H4a.534.534,0,0,1-.538-.527V1.582A.534.534,0,0,1,4,1.055h7V3.691a1.6,1.6,0,0,0,1.615,1.582h2.692V16.418A.534.534,0,0,1,14.768,16.945Z" transform="translate(-2.383 0)" fill="#fff"/>
+      <path id="Path_4080" data-name="Path 4080" d="M12.9,8.281H6.437a.538.538,0,0,0,0,1.077H12.9a.538.538,0,0,0,0-1.077Z" transform="translate(-2.668 -0.838)" fill="#fff"/>
+      <path id="Path_4081" data-name="Path 4081" d="M12.9,10.625H6.437a.538.538,0,1,0,0,1.077H12.9a.538.538,0,1,0,0-1.077Z" transform="translate(-2.668 -1.075)" fill="#fff"/>
+      <path id="Path_4082" data-name="Path 4082" d="M12.9,12.969H6.437a.538.538,0,1,0,0,1.077H12.9a.538.538,0,1,0,0-1.077Z" transform="translate(-2.668 -1.312)" fill="#fff"/>
+      <path id="Path_4083" data-name="Path 4083" d="M10.745,15.313H6.437a.538.538,0,1,0,0,1.077h4.308a.538.538,0,1,0,0-1.077Z" transform="translate(-2.668 -1.549)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

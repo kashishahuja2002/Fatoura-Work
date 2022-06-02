@@ -1,0 +1,105 @@
+:root {
+    --blue: #0C4D71;
+}
+
+p {
+    margin: 0!important;
+}
+
+a {
+    color: black !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.left-container {
+    padding: 40px;
+}
+
+.left-container form {
+    margin-bottom: 20px;
+}
+
+.left-container .logo {
+    margin-bottom: 50px;
+    width: 30%;
+}
+
+.left-container input, .login {
+    width: 70%;
+    padding: 8px;
+    padding-left: 20px;
+    border-radius: 30px;
+    margin: 15px 0px;
+    border: 1px solid black;
+}
+
+.left-container input:focus, .login:focus {
+    outline: none;
+    border: 1px solid black;
+    box-shadow: none !important;
+}
+
+.left-container .login {
+    background-color: var(--blue) !important;
+    border-radius: 40px;
+}
+
+.left-container .login:hover {
+    background-color: var(--blue) !important;
+}
+
+.left-container .google {
+    background-color: transparent;
+    border: 1px solid black;
+    width: auto;
+    /* padding: 10px 15px; */
+    border-radius: 30px;
+    display: inline-flex;
+    margin: 10px 0;
+    z-index: 999;
+}
+
+.left-container .google button, .left-container .google button div {
+    color: black !important;
+    opacity: 1;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+
+}
+
+.right-container {
+    background-color: var(--blue);
+    min-height: 100vh;
+    height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .left-container .logo {
+        width: 60%;
+    }
+
+    .left-container input, .login {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .left-container .logo {
+        width: 80%;
+    }
+
+    .left-container input, .login {
+        width: 100%;
+    }
+}
+
+.left-container .error-text {
+    color: red;
+    display: block;
+}
+
+.left-container .google img {
+    margin-right: 10px;
+}
