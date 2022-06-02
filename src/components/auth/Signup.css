@@ -1,0 +1,15 @@
+.left-container .name {
+    display: flex;
+}
+
+.left-container .name input {
+    margin-right: 15px;
+    margin-bottom: 0px;
+    width: 95%;
+}
+
+@media screen and (max-width: 576px) {
+    .left-container .name {
+        display: block;
+    }
+}
