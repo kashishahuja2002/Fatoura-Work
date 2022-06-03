@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import './Login.css';
 import './Signup.css';
+import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import { GoogleLogin } from 'react-google-login';
 import { Button, Form, FormGroup, Input, Container, Col, Row} from "reactstrap";
 
@@ -107,7 +108,7 @@ const Signup = (props) => {
             <Row>
                 <Col xs={12} md={6}>
                     <div className="left-container">
-                    <img src="https://fatoura.work/assets/images/Fatoura-Logo-Dark.png" alt="Fatoura logo" className="logo" />
+                    <img src={FatouraLogoDark} alt="Fatoura logo" className="logo" />
                     <h4>Sign Up</h4>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>

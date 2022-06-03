@@ -1,6 +1,6 @@
 import './App.css';
-// import Login from './components/auth/Login';
-import Signup from './components/auth/Signup';
+import HomeContainer from './components/pages/HomeContainer'
+// import Login from './components/auth/Login'
 
 let dummyData = [
     {"abc@abc.com": "abc"}, 
@@ -9,8 +9,8 @@ let dummyData = [
 
 function App() {
     return (
-        <Signup dummyData={dummyData} />
-        // {/* <Login dummyData={dummyData} /> */}
+        <HomeContainer />
+        // {/* <Login /> */}
     );
 }
 

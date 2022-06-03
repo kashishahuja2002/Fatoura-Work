@@ -1,0 +1,145 @@
+:root {
+    --light-blue: #EBF6F7;
+    --peacock-blue: #059CA4;
+}
+
+.dashboard {
+    padding: 20px;
+}
+
+.box {
+    padding: 30px !important;
+    border-radius: 20px;
+}
+
+.dash-box {
+    background-color: var(--light-blue);
+}
+
+.flex-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dash-box .last, .dash-box .last:hover, .dash-box .last:active, .dash-box .last:focus, .last .btn-primary:active, .last .show>.btn-primary.dropdown-toggle {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-shadow: none !important;
+    display: inline;
+}
+
+.dash-box .dropdown-toggle::after {
+    display: none;
+}
+
+.dash-box .dropdown-menu {
+    border-radius: 20px;
+    margin-top: 5px !important;
+}
+
+.dash-box .dropdown-item {
+    color: #000;
+    text-align: center;
+}
+
+.dash-box .dropdown-item:hover {
+    background-color: #E5E7EB;
+    color: #000;
+}
+
+.dash-box .three-box {
+    margin-top: 20px;
+}
+
+.white-box {
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 30px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-circle {
+    background-color: var(--light-blue);
+    border-radius: 9999px;
+    color: var(--peacock-blue);
+    padding: 12px;
+    text-align: center;
+}
+
+.white-box svg {
+    width: 25px;
+    position: relative;
+    bottom: 2px;
+}
+
+.pea-box {
+    background-color: var(--peacock-blue);
+    color: #fff;
+}
+
+.pea-box .row:first-child {
+    border-bottom: 1px solid #fff;
+}
+
+.pea-box .row {
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+}
+
+.pea-box .row:last-child {
+    border-bottom: none;
+}
+
+.pea-box p {
+    margin-bottom: 0px;
+}
+
+.pea-box a {
+    color: #fff;
+}
+
+.pea-box a:hover {
+    color: #fff;
+}
+
+.pea-box .col:nth-child(2) {
+    text-align: right;
+}
+
+.history-box {
+    background-color: var(--light-blue);
+    margin-top: 20px !important;
+}
+
+.history-box .white-box .row {
+    margin-bottom: 10px;
+}
+
+.history-box .white-box .timely {
+    position: relative;
+    bottom: 10px;
+}
+
+@media screen and (min-width: 992px) {
+    .pea-box {
+        min-height: 300px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .pea-box {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .flex-class {
+        flex-direction: column;
+    }
+}
