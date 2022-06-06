@@ -1,54 +1,9 @@
-:root {
-    --light-blue: #EBF6F7;
-    --peacock-blue: #059CA4;
-}
-
 .dashboard {
     padding: 20px;
 }
 
-.box {
-    padding: 30px !important;
-    border-radius: 20px;
-}
-
 .dash-box {
     background-color: var(--light-blue);
-}
-
-.flex-class {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dash-box .last, .dash-box .last:hover, .dash-box .last:active, .dash-box .last:focus, .last .btn-primary:active, .last .show>.btn-primary.dropdown-toggle {
-    background-color: #fff !important;
-    color: #000 !important;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-shadow: none !important;
-    display: inline;
-}
-
-.dash-box .dropdown-toggle::after {
-    display: none;
-}
-
-.dash-box .dropdown-menu {
-    border-radius: 20px;
-    margin-top: 5px !important;
-}
-
-.dash-box .dropdown-item {
-    color: #000;
-    text-align: center;
-}
-
-.dash-box .dropdown-item:hover {
-    background-color: #E5E7EB;
-    color: #000;
 }
 
 .dash-box .three-box {
@@ -62,6 +17,10 @@
     padding: 40px;
     display: flex;
     flex-direction: column;
+}
+
+.white-box div:first-child {
+    margin: auto;
 }
 
 .icon-circle {
