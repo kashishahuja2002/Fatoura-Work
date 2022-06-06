@@ -1,0 +1,65 @@
+.reports {
+    padding: 20px;
+}
+
+.report-box {
+    background-color: var(--light-blue);
+}
+
+.dropdowns-div {
+    display: flex;
+}
+
+.dropdowns-div .dropdown-toggle {
+    margin: 5px;
+}
+
+.dropdowns-div p {
+    margin: 0 20px;
+}
+
+.dropdowns-div .flex-class {
+    margin-top: auto;
+} 
+
+.dropdowns-div .blue-dropdown {
+    margin: auto;
+}
+
+.dropdowns-div .blue-dropdown .dropdown-toggle {
+    padding: .375rem 1.5rem !important;
+}
+
+.dropdowns-div .input-date {
+    margin-right: 10px;
+}
+
+.dropdowns-div .input-date input {
+    border: 1px solid #000;
+}
+
+.invoice-table .bottom {
+    border-top: 1px solid #aaa;
+}
+
+@media screen and (max-width: 1200px) {
+    .report-box .head.flex-class {
+        flex-direction: column;
+    }
+    
+    .dropdowns-div {
+        flex-wrap:wrap;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .dropdowns-div {
+        flex-wrap:wrap;
+    }
+
+    .dropdowns-div div{
+        margin-bottom: 10px;
+    }
+}
+
+
