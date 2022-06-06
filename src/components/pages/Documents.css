@@ -1,0 +1,29 @@
+.documents {
+    padding: 20px;
+}
+
+.doc-box {
+    background-color: var(--light-blue);
+}
+
+.dropdowns-div {
+    display: flex;
+}
+
+.dropdowns-div .dropdown-toggle {
+    margin: 5px;
+}
+
+@media screen and (max-width: 576px) {
+    .doc-box .head.flex-class {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .dropdowns-div {
+        flex-direction: column;
+    }
+}
+
+
