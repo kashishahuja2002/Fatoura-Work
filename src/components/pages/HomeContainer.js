@@ -7,7 +7,9 @@ import SidebarCurve from "../../assets/images/SidebarCurve.svg";
 import avatar from "../../assets/images/avatar.jpg";
 import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-bootstrap';
 import './HomeContainer.css';
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
+// import Documents from './Documents';
+import Reports from './Reports';
 
 const HomeContainer = () => {
     return (
@@ -39,12 +41,12 @@ const HomeContainer = () => {
                     </Col>
 
                     <Col xs="12" lg="10" >
-                        <Row className="header">    
+                        <Row className="header blue-dropdown">    
                             {[false,].map((expand) => (
                                 <Navbar key={expand} expand={expand}>
                                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className="d-block d-lg-none" />
                                     <Dropdown>
-                                        <Dropdown.Toggle id="dropdown-basic" className="create-new">
+                                        <Dropdown.Toggle id="dropdown-basic">
                                             Create New +
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
@@ -105,7 +107,7 @@ const HomeContainer = () => {
                             ))}
                         </Row>
 
-                        <Dashboard />
+                        <Reports />
                         
                     </Col>
                 </Row>

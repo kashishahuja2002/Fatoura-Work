@@ -1,3 +1,10 @@
+:root {
+  --blue: #0C4D71;
+  --light-blue: #EBF6F7;
+  --peacock-blue: #059CA4;
+  --dark-blue: #0B4463;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +17,109 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.box {
+  padding: 30px !important;
+  border-radius: 20px;
+}
+
+.flex-class {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+/* Dropdown CSS */
+.dropdown-toggle, .dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-toggle:focus, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+  border-radius: 20px !important;
+  outline: none;
+  box-shadow: none !important;
+  padding: 6px 15px !important;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-menu {
+  border-radius: 20px !important;
+  margin-top: 5px !important;
+}
+
+.dropdown-item {
+  text-align: center !important;
+  border-radius: 6px !important;
+}
+
+
+/* Blue Dropdown CSS */
+.blue-dropdown .dropdown-toggle, .blue-dropdown .dropdown-toggle:hover, .blue-dropdown .dropdown-toggle:active, .blue-dropdown .dropdown-toggle:focus, .blue-dropdown .btn-primary:active, .blue-dropdown .show>.btn-primary.dropdown-toggle {
+  border: none !important;
+  background-color: var(--blue) !important;
+}
+
+.blue-dropdown .dropdown-menu {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.blue-dropdown .dropdown-item {
+  color: #fff;
+}
+
+.blue-dropdown .dropdown-item:hover {
+  background-color: var(--dark-blue);
+  color: #fff;
+}
+
+
+/* White Dropdown CSS */
+.white-dropdown .dropdown-toggle, .white-dropdown .dropdown-toggle:hover, .white-dropdown .dropdown-toggle:active, .white-dropdown .dropdown-toggle:focus, .white-dropdown .btn-primary:active, .white-dropdown .show>.btn-primary.dropdown-toggle {
+  background-color: #fff !important;
+  color: #000 !important;
+  display: inline;
+  border: 1px solid #000 !important;
+}
+
+.white-dropdown .dropdown-item {
+  color: #000;
+}
+
+.white-dropdown .dropdown-item:hover {
+  background-color: #E5E7EB;
+  color: #000;
+}
+
+
+/* Blue Button CSS */
+.blue-button, .blue-button:active, .blue-button:hover, .blue-button:focus {
+  background-color: var(--blue) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 20px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: .375rem 1.5rem !important;
+  margin: 5px;
+}
+
+/* White button CSS */
+.white-button {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: none;
 }

@@ -1,12 +1,8 @@
-:root {
-    --blue: #0C4D71;
-    --dark-blue: #0B4463;
-}
-
 .vertical-nav, .offcanvas {
     background-color: var(--blue) !important;
     color: #fff;
     padding: 0 !important;
+    min-height: 100vh;
 }
 
 .logo {
@@ -80,36 +76,6 @@
     color: #fff;
 }
 
-.header .create-new, .header .create-new:hover, .header .create-new:active, .header .create-new:focus, .create-new .btn-primary:active, .create-new .show>.btn-primary.dropdown-toggle {
-    background-color: var(--blue) !important;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    box-shadow: none !important;
-}
-
-.header .dropdown-toggle::after {
-    display: none;
-}
-
-.header .dropdown-menu {
-    background-color: var(--blue);
-    color: #fff;
-    border-radius: 20px;
-    margin-top: 5px !important;
-}
-
-.header .dropdown-item {
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.header .dropdown-item:hover {
-    background-color: var(--dark-blue);
-    color: #fff;
-}
-
 .right-header {
     position: absolute;
     right: 30px;
@@ -118,16 +84,11 @@
 .right-header .user{
     background-color: transparent !important;
     color: #000 !important;
-    box-shadow: none !important;
-    border: none;
-    outline: none;
 }
 
 .right-header .user:hover, .right-header .user:active, .right-header .user:focus, .user .btn-primary:active, .user .show>.btn-primary.dropdown-toggle {
     background-color: rgb(244, 244, 244) !important;
-    box-shadow: none;
-    border: none;
-    outline: none;
+    border-radius: 0% !important;
 }
 
 .right-header .dropdown-menu {
