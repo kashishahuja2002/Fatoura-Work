@@ -21,7 +21,7 @@ const InvoiceTable = () => {
                         <th>Amount Paid</th>
                         <th>Amount Due</th>
                         <th>Total Amount</th>
-                        <th className="rounded-r">Action</th>
+                        <th className="rounded-r">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

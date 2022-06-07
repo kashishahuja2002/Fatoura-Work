@@ -9,7 +9,8 @@ import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-boo
 import './HomeContainer.css';
 // import Dashboard from './Dashboard';
 // import Documents from './Documents';
-import Reports from './Reports';
+// import Reports from './Reports';
+import CreateNew from './CreateNew';
 
 const HomeContainer = () => {
     return (
@@ -41,11 +42,11 @@ const HomeContainer = () => {
                     </Col>
 
                     <Col xs="12" lg="10" >
-                        <Row className="header blue-dropdown">    
+                        <Row className="header">    
                             {[false,].map((expand) => (
                                 <Navbar key={expand} expand={expand}>
                                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className="d-block d-lg-none" />
-                                    <Dropdown>
+                                    <Dropdown className="blue-dropdown">
                                         <Dropdown.Toggle id="dropdown-basic">
                                             Create New +
                                         </Dropdown.Toggle>
@@ -57,7 +58,7 @@ const HomeContainer = () => {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                     <div className="right-header">
-                                        <Dropdown>
+                                        <Dropdown className="blue-dropdown">
                                             <Dropdown.Toggle id="dropdown-basic" className="user" >
                                                 <img src={avatar} alt="user" width={32} />
                                                 Hi, Kashish
@@ -107,7 +108,7 @@ const HomeContainer = () => {
                             ))}
                         </Row>
 
-                        <Reports />
+                        <CreateNew type={"Invoice"} />
                         
                     </Col>
                 </Row>

@@ -12,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -39,6 +40,17 @@ code {
   width: 100%;
 }
 
+.bdr-btm {
+  border-bottom: 1px solid rgb(138, 137, 137);
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
 
 /* Dropdown CSS */
 .dropdown-toggle, .dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-toggle:focus, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
@@ -116,10 +128,12 @@ code {
 
 /* White button CSS */
 .white-button {
-  background-color: #fff;
-  color: #000;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-shadow: none;
+  background-color: #fff !important;
+  color: #000 !important;
+  border: none !important;
+  border-radius: 20px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: .375rem 1.5rem !important;
+  margin: 5px;
 }
