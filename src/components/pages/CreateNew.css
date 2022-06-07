@@ -1,0 +1,136 @@
+.create-new {
+    padding: 20px;
+}
+
+.cn-box {
+    background-color: var(--light-blue);
+    padding: 30px 80px !important;
+}
+
+.cn-head {
+    display: flex;
+}
+
+.cn-head .plus {
+    display: inline;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #AFDEE1;
+    margin-right: 10px;
+}
+
+.cn-head .plus svg {
+    position: relative;
+    top: 6px;
+    left: 7px;
+}
+
+.cn-head h4 {
+    margin: auto 0;
+    font-weight: bold;
+}
+
+.cn-box .cn-body {
+    background-color: #D7E7EB;
+    margin: 20px 0;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.cn-body label {
+    margin: 3px;
+    font-weight: bold;
+}
+
+.cn-body input, .cn-body textarea {
+    border-radius: 10px;
+}
+
+.cn-body h5 {
+    border-bottom: 1px solid rgb(78, 77, 77);
+}
+
+.cn-body .invoice-table{
+    background-color: #C7DBE2;
+    border-radius: 20px;
+    min-height: auto;
+    padding-bottom: 10px;
+}
+
+.cn-body .invoice-table .table {
+    margin: 0;
+}
+
+.cn-body .invoice-table thead {
+    background-color: #82A6B9;
+    color: #fff;
+}
+
+.cn-body .invoice-table thead th:first-child, .cn-body .invoice-table tbody tr td:first-child {
+    padding-left: 30px;
+}
+
+.cn-body .invoice-table .blue-button {
+    padding: 3px 25px !important;
+    margin: auto 5px;
+}
+
+.cn-body .invoice-table .action-btn {
+    background-color: #82A6B9;
+}
+
+.cn-body .invoice-table .action-btn svg {
+    color: #fff;
+    width: 17px;
+}
+
+.cn-body .invoice-table .tbl-btm-btn {
+    padding-left: 20px;
+}
+
+.cn-body .rounded-l
+{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.cn-body .rounded-r
+{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Select */
+.cn-body .flex-class {
+    justify-content: flex-start;
+}
+
+.cn-body  .css-b62m3t-container {
+    border-radius: 10px;
+}
+
+.cn-body .btm-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 992px) {
+    .cn-box {
+        padding: 30px !important;
+    }
+
+    .cn-body .invoice-table .tbl-btm-btn {
+        padding-left: 10px;
+    }
+
+    .cn-body .invoice-table .tbl-btm-btn button {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cn-body .btm-btn {
+        flex-direction: column;
+    }
+}
