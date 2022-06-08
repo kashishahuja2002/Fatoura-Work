@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ReactDOM } from "react-dom";
 import { Button, Input, Container, Col, Row, Label, Table} from "reactstrap";
 import './InvoiceTable.css';
 import './CreateNew.css';

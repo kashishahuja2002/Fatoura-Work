@@ -12,9 +12,10 @@
 
 .vertical-nav .nav-link {
     position: relative;
-    color: #fff;
+    color: #fff !important;
     padding: 15px !important;
     display: flex;
+    font-weight: 400;
 }
 
 .vertical-nav .nav-link:hover {
@@ -23,7 +24,7 @@
 
 .vertical-nav .nav-link.active {
     background-color: var(--dark-blue);
-    color: #fff;
+    color: #fff !important;
 }
 
 .vertical-nav .dot {
