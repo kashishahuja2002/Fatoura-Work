@@ -1,0 +1,36 @@
+p {
+    margin: 0!important;
+}
+
+a {
+    color: black !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.left-container {
+    padding: 40px;
+}
+
+.left-container .logo {
+    margin-bottom: 50px;
+    width: 30%;
+}
+
+.right-container {
+    background-color: var(--blue);
+    min-height: 100vh;
+    height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .left-container .logo {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .left-container .logo {
+        width: 80%;
+    }
+}
