@@ -124,6 +124,11 @@ code {
   box-shadow: none !important;
   padding: .375rem 1.5rem !important;
   margin: 5px;
+  display: inline;
+  text-align: center;
+  vertical-align: middle;
+  max-width: 100%;
+  width: fit-content;
 }
 
 /* White button CSS */
@@ -136,4 +141,9 @@ code {
   box-shadow: none !important;
   padding: .375rem 1.5rem !important;
   margin: 5px;
+  display: inline;
+  text-align: center;
+  vertical-align: middle;
+  max-width: 100%;
+  width: fit-content;
 }
