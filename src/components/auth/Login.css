@@ -1,24 +1,5 @@
-p {
-    margin: 0!important;
-}
-
-a {
-    color: black !important;
-    text-decoration: none !important;
-    font-weight: bold;
-}
-
-.left-container {
-    padding: 40px;
-}
-
 .left-container form {
     margin-bottom: 20px;
-}
-
-.left-container .logo {
-    margin-bottom: 50px;
-    width: 30%;
 }
 
 .left-container input, .login {
@@ -62,33 +43,6 @@ a {
     border: none !important;
     background-color: transparent !important;
     box-shadow: none !important;
-
-}
-
-.right-container {
-    background-color: var(--blue);
-    min-height: 100vh;
-    height: 100%;
-}
-
-@media screen and (max-width: 1200px) {
-    .left-container .logo {
-        width: 60%;
-    }
-
-    .left-container input, .login {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .left-container .logo {
-        width: 80%;
-    }
-
-    .left-container input, .login {
-        width: 100%;
-    }
 }
 
 .left-container .error-text {
@@ -99,3 +53,16 @@ a {
 .left-container .google img {
     margin-right: 10px;
 }
+
+@media screen and (max-width: 1200px) {
+    .left-container input, .login {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .left-container input, .login {
+        width: 100%;
+    }
+}
+

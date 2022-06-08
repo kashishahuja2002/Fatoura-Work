@@ -1,8 +1,7 @@
 import { React, useState } from "react";
 import './Login.css';
-import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import { GoogleLogin } from 'react-google-login';
-import { Button, Form, FormGroup, Input, Container, Col, Row} from "reactstrap";
+import { Button, Form, FormGroup, Input} from "reactstrap";
 
 const Login = (props) => {
 
@@ -59,44 +58,33 @@ const Login = (props) => {
     };
 
     return (
-        <Container fluid>
-            <Row>
-                <Col xs={12} md={6}>
-                    <div className="left-container">
-                    <img src={FatouraLogoDark} alt="Fatoura logo" className="logo" />
-                    <h4>Sign In</h4>
-                    <Form onSubmit={handleSubmit}>
-                        <FormGroup>
-                            <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
-                            <span className="error-text">{validationErrors["emailError"]}</span>
+        <>
+            <h4>Sign In</h4>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
+                    <span className="error-text">{validationErrors["emailError"]}</span>
 
-                            <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
-                            <span className="error-text">{validationErrors["passwordError"]}</span>
+                    <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
+                    <span className="error-text">{validationErrors["passwordError"]}</span>
 
-                            <a href="#">Forgot your password?</a>
-                        </FormGroup>
-                        <Button type="submit" className="login">Let me in</Button>
-                    </Form>
+                    <a href="#">Forgot your password?</a>
+                </FormGroup>
+                <Button type="submit" className="login">Let me in</Button>
+            </Form>
 
-                    <p>Sign in with Social Media</p>
-                    <div className="google">
-                        <GoogleLogin
-                            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                            buttonText="Sign in with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
-                    </div>
-                    <p>Let me in? <a href="#">Sign up</a> </p>
-
-                    </div>
-                </Col>
-                <Col md={6} className="d-none d-md-block">
-                    <div className="right-container"></div>
-                </Col>
-            </Row>
-        </Container>
+            <p>Sign in with Social Media</p>
+            <div className="google">
+                <GoogleLogin
+                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                    buttonText="Sign in with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+            </div>
+            <p>Let me in? <a href="#">Sign up</a> </p>
+        </>
     );
 }
 

@@ -1,9 +1,8 @@
 import { React, useState } from "react";
 import './Login.css';
 import './Signup.css';
-import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import { GoogleLogin } from 'react-google-login';
-import { Button, Form, FormGroup, Input, Container, Col, Row} from "reactstrap";
+import { Button, Form, FormGroup, Input} from "reactstrap";
 
 const Signup = (props) => {
 
@@ -61,7 +60,7 @@ const Signup = (props) => {
                 if (!value) {
                     return "Mobile number is Required";
                 } 
-                else if (value.length != 10) {
+                else if (value.length !== 10) {
                     return "Enter a valid mobile number";
                 } 
                 else {
@@ -104,60 +103,50 @@ const Signup = (props) => {
     };
 
     return (
-        <Container fluid>
-            <Row>
-                <Col xs={12} md={6}>
-                    <div className="left-container">
-                    <img src={FatouraLogoDark} alt="Fatoura logo" className="logo" />
-                    <h4>Sign Up</h4>
-                    <Form onSubmit={handleSubmit}>
-                        <FormGroup>
-                            <div className="name">
-                                <div>
-                                    <Input type="text" placeholder="Enter first name" name="fname" className="fname" onChange={handleChange("fname")} />
-                                    <span className="error-text">{validationErrors["fnameError"]}</span>
-                                </div>
+        <>
+            <h4>Sign Up</h4>
+            <Form onSubmit={handleSubmit}>
+                <FormGroup>
+                    <div className="name">
+                        <div>
+                            <Input type="text" placeholder="Enter first name" name="fname" className="fname" onChange={handleChange("fname")} />
+                            <span className="error-text">{validationErrors["fnameError"]}</span>
+                        </div>
 
-                                <div>
-                                    <Input type="text" placeholder="Enter last name" name="lname" className="lname" onChange={handleChange("lname")} />
-                                    <span className="error-text">{validationErrors["lnameError"]}</span>
-                                </div>
-                            </div>
-
-                            <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
-                            <span className="error-text">{validationErrors["emailError"]}</span>
-
-                            <Input type="tel" placeholder="Enter mobile number" name="mobile" onChange={handleChange("mobile")} />
-                            <span className="error-text">{validationErrors["mobileError"]}</span>
-
-                            <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
-                            <span className="error-text">{validationErrors["passwordError"]}</span>
-
-                            <Input type="text" placeholder="Enter referal code (optional)" name="referal" onChange={handleChange("referal")} />
-                            <span className="error-text">{validationErrors["referalError"]}</span>
-                        </FormGroup>
-                        <Button type="submit" className="login">Create Account</Button>
-                    </Form>
-
-                    <p>Sign up with Social Media</p>
-                    <div className="google">
-                        <GoogleLogin
-                            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                            buttonText="Sign up with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
+                        <div>
+                            <Input type="text" placeholder="Enter last name" name="lname" className="lname" onChange={handleChange("lname")} />
+                            <span className="error-text">{validationErrors["lnameError"]}</span>
+                        </div>
                     </div>
-                    <p>Already a member? <a href="#">Sign In</a> </p>
 
-                    </div>
-                </Col>
-                <Col md={6} className="d-none d-md-block">
-                    <div className="right-container"></div>
-                </Col>
-            </Row>
-        </Container>
+                    <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
+                    <span className="error-text">{validationErrors["emailError"]}</span>
+
+                    <Input type="tel" placeholder="Enter mobile number" name="mobile" onChange={handleChange("mobile")} />
+                    <span className="error-text">{validationErrors["mobileError"]}</span>
+
+                    <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
+                    <span className="error-text">{validationErrors["passwordError"]}</span>
+
+                    <Input type="text" placeholder="Enter referal code (optional)" name="referal" onChange={handleChange("referal")} />
+                    <span className="error-text">{validationErrors["referalError"]}</span>
+                </FormGroup>
+                <Button type="submit" className="login">Create Account</Button>
+            </Form>
+
+            <p>Sign up with Social Media</p>
+            <div className="google">
+                <GoogleLogin
+                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                    buttonText="Sign up with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+            </div>
+            <p>Already a member? <a href="#">Sign In</a> </p>
+
+        </>
     );
 }
 
