@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactDOM } from "react-dom";
 import { Button, Input, Container, Col, Row, Label, Table} from "reactstrap";
 import './InvoiceTable.css';
 import './CreateNew.css';
 
 import Select from 'react-select';
+import ModalCustom from "../ModalCustom";
 
 const CreateNew = (props) => {
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const modalClosed = () => {
+        setOpenModal(false);
+    }
+
     const options = [
         { value: 'AED', label: 'AED' },
         { value: 'AFN', label: 'AFN' },
         { value: 'AMD', label: 'AMD' }
     ];
+
+    const imageUpload = (e) => {
+        console.log(e.target.value);
+        setOpenModal(true);
+    }
 
     return (
         <Container fluid className="create-new">
@@ -45,7 +58,7 @@ const CreateNew = (props) => {
                                 <Input type="text" />
                             </div>
                             <div className="mb15">
-                                <h5>Client Name</h5>
+                                <h5 className="bdr-btm">Client Name</h5>
                             </div>
                             <div className="mb15">
                                 <Label>
@@ -71,17 +84,23 @@ const CreateNew = (props) => {
                         </Col>
 
                         <Col xs={12} sm={4}>
-                            <div className="mb15">
-                                <Label>Company Logo</Label>
-                                <div>
-                                    <Label>+ Add Company Logo</Label>
-                                    <Input type="file" />
-                                    <img src="" alt="Company Logo" />
+                            <div className="mb15 file">
+                                <p>Company Logo</p>
+                                <div className="white-box mb15">
+                                    <Label for="companyLogo" className="d-non">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width={20} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                            <p>Add Company Logo</p>
+                                        </div>
+                                    </Label>
+                                    
+                                    <Input  type="file" accept="image/*" id="companyLogo" onChange={imageUpload} hidden />
+                                    <img src="https://cdn.pixabay.com/photo/2015/05/27/02/58/buddha-785863__340.jpg" className="d-none" alt="Company Logo" />
                                 </div>
-                                <div>
-                                    <Label>Change</Label>
-                                    <Input type="file" />
-                                    <Button>Remove</Button>
+                                <div className="d-non file-btn">
+                                    <Label for="changeLogo" className="blue-button">Change</Label>
+                                    <Input type="file" accept="image/*" id="changeLogo" hidden />
+                                    <Button className="white-button">Remove</Button>
                                 </div>
                             </div>
                             <div className="mb15">
@@ -201,11 +220,29 @@ const CreateNew = (props) => {
 
                     <div className="mb15">
                         <Row>
-                            <Col xs={12} md={6} className="flex-class">
+                            <Col xs={12} md={6} className="search-select flex-class">
                                 <Label>Currency:</Label>
-                                <Select options={options} />
+                                <Select options={options} placeholder="Select Value" />
                             </Col>
-                            <Col xs={12} md={6}></Col>
+                            <Col xs={12} md={6} className="total-table">
+                                <div className="flex-class">
+                                    <p>Subtotal:</p>
+                                    <p>$20.00</p>
+                                </div>
+                                <div className="flex-class">
+                                    <p>Discount (%):</p>
+                                    <Input type="number" />
+                                    <p>-$0.00</p>
+                                </div>
+                                <div className="flex-class bdr-btm">
+                                    <p>Discount Subtotal:</p>
+                                    <p>$20.00</p>
+                                </div>
+                                <div className="flex-class mt15">
+                                    <h5>Total:</h5>
+                                    <h5>$20.00</h5>
+                                </div>
+                            </Col>
                         </Row>
                     </div>
 
@@ -213,8 +250,8 @@ const CreateNew = (props) => {
                         <p><svg xmlns="http://www.w3.org/2000/svg" width={20} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-8 w- me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> If you are going accept payments via PayPal, you may need to convert amount to equivalent USD amount which is accept by PayPal. To know more about PayPal accepted currencies <a href="https://developer.paypal.com/docs/reports/reference/paypal-supported-currencies/">Click here</a></p>
                     </div>
 
-                    <Row className = {props.type == "Invoice" ? "bdr-btm mb15" : "mb15"} >
-                        <Col xs={12} sm={props.type == "Invoice" ? 8 : 12} >
+                    <Row className = {props.type === "Invoice" ? "bdr-btm mb15" : "mb15"} >
+                        <Col xs={12} sm={props.type === "Invoice" ? 8 : 12} >
                             <div className="mb15">
                                 <Label>
                                     <svg xmlns="http://www.w3.org/2000/svg" width={20} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 me-1"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -223,8 +260,8 @@ const CreateNew = (props) => {
                                 <Input type="textarea" rows={10} />
                             </div>
                         </Col>
-                        {props.type == "Invoice" &&
-                            <Col xs={12} sm={4} >
+                        {props.type === "Invoice" &&
+                            <Col xs={12} sm={4} className="file">
                                 <Label>QR Code</Label>
                                 <div className="mb15">
                                     <p>Heading</p>
@@ -232,38 +269,46 @@ const CreateNew = (props) => {
                                 </div>
                                 <div className="mb15">
                                     <p>Image</p>
-                                    <div>
-                                        <Label>+ Add QR Code</Label>
-                                        <Input type="file" />
-                                        <img src="" alt="Company Logo" />
+                                    <div className="white-box mb15">
+                                        <Label for="companyLogo" className="d-non">
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width={20} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                                <p>Add QR Code</p>
+                                            </div>
+                                        </Label>
+                                        <Input type="file" accept="image/*" id="companyLogo" hidden />
+                                        <img src="https://cdn.pixabay.com/photo/2015/05/27/02/58/buddha-785863__340.jpg" className="d-none" alt="Company Logo" />
                                     </div>
-                                    <div>
-                                        <Label>Change</Label>
-                                        <Input type="file" />
-                                        <Button>Remove</Button>
+                                    <div className="d-non file-btn">
+                                        <Label for="changeLogo" className="blue-button">Change</Label>
+                                        <Input type="file" accept="image/*" id="changeLogo" hidden />
+                                        <Button className="white-button">Remove</Button>
                                     </div>
                                 </div>
                             </Col>
                         }
                     </Row>
                     
-                    {props.type == "Invoice" && 
+                    {props.type === "Invoice" && 
                         <>
                             <Row>
                                 <Col xs={12} sm={8} >
-                                    <div className="mb15">
-                                        <Label>
-                                            E-Sign
-                                        </Label>
-                                        <div>
-                                            <Label>+ Add E-Sign</Label>
-                                            <Input type="file" />
-                                            <img src="" alt="Company Logo" />
+                                    <div className="mb15 file">
+                                        <p>E-Sign</p>
+                                        <div className="white-box mb15">
+                                            <Label for="companyLogo" className="d-non">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width={20} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                                    <p>Add E-Sign</p>
+                                                </div>
+                                            </Label>
+                                            <Input type="file" accept="image/*" id="companyLogo" hidden />
+                                            <img src="https://cdn.pixabay.com/photo/2015/05/27/02/58/buddha-785863__340.jpg" className="d-none" alt="Company Logo" />
                                         </div>
-                                        <div>
-                                            <Label>Change</Label>
-                                            <Input type="file" />
-                                            <Button>Remove</Button>
+                                        <div className="d-non file-btn">
+                                            <Label for="changeLogo" className="blue-button">Change</Label>
+                                            <Input type="file" accept="image/*" id="changeLogo" hidden />
+                                            <Button className="white-button">Remove</Button>
                                         </div>
                                     </div>
                                 </Col>
@@ -279,8 +324,8 @@ const CreateNew = (props) => {
                     </Row>
                 
                 </div>
-
-            </div>
+            </div> 
+            {openModal && <ModalCustom openModal={openModal} modalClosed={modalClosed} />}
         </Container>
     );
 }

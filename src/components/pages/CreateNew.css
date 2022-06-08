@@ -38,17 +38,66 @@
     padding: 30px;
 }
 
-.cn-body label {
+.cn-body label, .cn-body .file p {
     margin: 3px;
     font-weight: bold;
 }
 
-.cn-body input, .cn-body textarea {
+.cn-body input, .cn-body input:focus, .cn-body textarea, .cn-body textarea:focus {
     border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
-.cn-body h5 {
-    border-bottom: 1px solid rgb(78, 77, 77);
+.cn-body .file label {
+    cursor: pointer;
+}
+
+.cn-body .white-box {
+    background-color: #fff;
+    margin-top: 0px;
+    padding: 20px;
+    border-radius: 15px;
+    height: 150px;
+}
+
+.cn-body .white-box label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.cn-body .white-box label div {
+    margin: auto;
+}
+
+.cn-body .white-box label svg, .cn-body .white-box label p {
+    display: block;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.cn-body .white-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.cn-body .file-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.cn-body .file-btn .blue-button, .cn-body .file-btn .white-button {
+    margin: 5px;
+    font-weight: 400;
 }
 
 .cn-body .invoice-table{
@@ -89,6 +138,15 @@
     padding-left: 20px;
 }
 
+.cn-body .total-table p {
+    margin: 3px;
+    font-weight: bold;
+}
+
+.cn-body .total-table input{
+    width: 30%;
+}
+
 .cn-body .rounded-l
 {
     border-top-left-radius: 10px;
@@ -102,17 +160,22 @@
 }
 
 /* Select */
-.cn-body .flex-class {
+.cn-body .search-select.flex-class {
     justify-content: flex-start;
 }
 
-.cn-body  .css-b62m3t-container {
-    border-radius: 10px;
+.cn-body .search-select .css-1s2u09g-control, .cn-body .search-select .css-1pahdxg-control, .cn-body .search-select .css-1pahdxg-control:focus, .cn-body .search-select .css-1pahdxg-control:hover {
+    border-radius: 10px !important;
+    outline: none !important;
+    border: none !important;
+    border-style: none !important;
+    box-shadow: none !important;
+    margin: 10px;
 }
 
 .cn-body .btm-btn {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
 }
 
 @media screen and (max-width: 992px) {
@@ -129,8 +192,41 @@
     }
 }
 
+@media screen and (min-width: 576px) and (max-width: 800px) {
+    .cn-body .file-btn {
+        flex-direction: column;
+    }
+
+    .cn-body .file-btn .blue-button, .cn-body .file-btn .white-button {
+        margin: 5px auto;
+    }
+}
+
 @media screen and (max-width: 450px) {
     .cn-body .btm-btn {
         flex-direction: column;
     }
+
+    .cn-body .file-btn {
+        flex-direction: column;
+    }
+
+    .cn-body .blue-button, .cn-body .white-button, .cn-body .file-btn .white-button .cn-body .file-btn .blue-button {
+        margin: 5px auto !important;
+    }
 }
+
+@media screen and (max-width: 360px) {
+    .cn-body .search-select.flex-class {
+        flex-direction: column;
+    }
+
+    .cn-body .total-table input {
+        width: 50%;
+    }
+
+    .cn-body .total-table div:nth-child(2) {
+        flex-direction: column;
+    }
+}
+
