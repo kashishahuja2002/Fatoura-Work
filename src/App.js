@@ -7,7 +7,7 @@ import HomeContainer from './components/pages/HomeContainer';
 import Dashboard from './components/pages/Dashboard';
 import Documents from './components/pages/Documents';
 import Reports from './components/pages/Reports';
-import Create from './components/pages/CreateNew';
+import CreateEdit from './components/pages/CreateEdit';
 
 function App() {
     return (
@@ -23,7 +23,7 @@ function App() {
                     <Route index path="dashboard" element={<Dashboard />} />
                     <Route path="myInvoices" element={<Documents />} />
                     <Route path="myReports" element={<Reports />} />
-                    <Route path="create" element={<Create />} />
+                    <Route path="create-edit" element={<CreateEdit />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -87,7 +87,7 @@ code {
 }
 
 .blue-dropdown .dropdown-item {
-  color: #fff;
+  color: #fff !important;
 }
 
 .blue-dropdown .dropdown-item:hover {
@@ -146,4 +146,9 @@ code {
   vertical-align: middle;
   max-width: 100%;
   width: fit-content;
+}
+
+.blue-button svg, .white-button svg {
+  position: relative;
+  bottom: 1px;
 }

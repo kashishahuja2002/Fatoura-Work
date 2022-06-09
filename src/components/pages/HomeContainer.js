@@ -10,7 +10,8 @@ import './HomeContainer.css';
 // import Dashboard from './Dashboard';
 // import Documents from './Documents';
 // import Reports from './Reports';
-import CreateNew from './CreateNew';
+// import CreateEdit from './CreateEdit';
+import View from './View';
 
 const HomeContainer = () => {
     return (
@@ -108,7 +109,7 @@ const HomeContainer = () => {
                             ))}
                         </Row>
 
-                        <CreateNew type={"Invoice"} />
+                        <View type={"Invoice"}/>
                         
                     </Col>
                 </Row>
