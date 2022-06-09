@@ -1,0 +1,236 @@
+.create-edit {
+    padding: 20px;
+}
+
+.ce-box {
+    background-color: var(--light-blue);
+    padding: 30px 80px !important;
+}
+
+.ce-head {
+    display: flex;
+}
+
+.ce-head .plus {
+    display: inline;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #AFDEE1;
+    margin-right: 10px;
+}
+
+.ce-head .plus svg {
+    position: relative;
+    top: 6px;
+    left: 7px;
+}
+
+.ce-head h4 {
+    margin: auto 0;
+    font-weight: bold;
+}
+
+.ce-box .ce-body {
+    background-color: #D7E7EB;
+    margin: 20px 0;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.ce-body label, .ce-body .file p {
+    margin: 3px;
+    font-weight: bold;
+}
+
+.ce-body input, .ce-body input:focus, .ce-body textarea, .ce-body textarea:focus {
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.ce-body .file label {
+    cursor: pointer;
+}
+
+.ce-body .white-box {
+    background-color: #fff;
+    margin-top: 0px;
+    padding: 20px;
+    border-radius: 15px;
+    height: 150px;
+}
+
+.ce-body .white-box label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.ce-body .white-box label div {
+    margin: auto;
+}
+
+.ce-body .white-box label svg, .ce-body .white-box label p {
+    display: block;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.ce-body .white-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.ce-body .file-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.ce-body .file-btn .blue-button, .ce-body .file-btn .white-button {
+    margin: 5px !important;
+    font-weight: 400;
+}
+
+.ce-body .invoice-table{
+    background-color: #C7DBE2;
+    border-radius: 20px;
+    min-height: auto;
+    padding-bottom: 10px;
+}
+
+.ce-body .invoice-table .table {
+    margin: 0;
+}
+
+.ce-body .invoice-table thead {
+    background-color: #82A6B9;
+    color: #fff;
+}
+
+.ce-body .invoice-table thead th:first-child, .ce-body .invoice-table tbody tr td:first-child {
+    padding-left: 30px;
+}
+
+.ce-body .invoice-table .blue-button {
+    padding: 3px 25px !important;
+    margin: auto 5px;
+}
+
+.ce-body .invoice-table .action-btn {
+    background-color: #82A6B9;
+}
+
+.ce-body .invoice-table .action-btn svg {
+    color: #fff;
+    width: 17px;
+}
+
+.ce-body .invoice-table .tbl-btm-btn {
+    padding-left: 20px;
+}
+
+.ce-body .total-table p {
+    margin: 3px;
+    font-weight: bold;
+}
+
+.ce-body .total-table input{
+    width: 30%;
+}
+
+.ce-body .rounded-l
+{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.ce-body .rounded-r
+{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Select */
+.ce-body .search-select.flex-class {
+    justify-content: flex-start;
+}
+
+.ce-body .search-select .css-1s2u09g-control, .ce-body .search-select .css-1pahdxg-control, .ce-body .search-select .css-1pahdxg-control:focus, .ce-body .search-select .css-1pahdxg-control:hover {
+    border-radius: 10px !important;
+    outline: none !important;
+    border: none !important;
+    border-style: none !important;
+    box-shadow: none !important;
+    margin: 10px;
+}
+
+.ce-body .btm-btn {
+    display: flex;
+    justify-content: flex-end !important;
+}
+
+@media screen and (max-width: 992px) {
+    .ce-box {
+        padding: 30px !important;
+    }
+
+    .ce-body .invoice-table .tbl-btm-btn {
+        padding-left: 10px;
+    }
+
+    .ce-body .invoice-table .tbl-btm-btn button {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 800px) {
+    .ce-body .file-btn {
+        flex-direction: column;
+    }
+
+    .ce-body .file-btn .blue-button, .ce-body .file-btn .white-button {
+        margin: 5px auto !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .ce-body .btm-btn {
+        flex-direction: column;
+    }
+
+    .ce-body .blue-button, .ce-body .white-button, .ce-body .file-btn .white-button .ce-body .file-btn .blue-button {
+        margin: 5px auto !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .create-edit {
+        padding: 10px !important;
+    }
+
+    .create-edit .ce-box, .create-edit .ce-body {
+        padding: 20px !important;
+    }
+
+    .ce-body .search-select.flex-class {
+        flex-direction: column;
+    }
+
+    .ce-body .total-table .flex-class {
+        flex-direction: row;
+    }
+
+    .ce-body .total-table input {
+        width: 50%;
+    }
+}
+
