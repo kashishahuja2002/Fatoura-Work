@@ -11,7 +11,8 @@ import './HomeContainer.css';
 // import Documents from './Documents';
 // import Reports from './Reports';
 // import CreateEdit from './CreateEdit';
-import View from './View';
+// import View from './View';
+import Profile from './Profile';
 
 const HomeContainer = () => {
     return (
@@ -109,7 +110,7 @@ const HomeContainer = () => {
                             ))}
                         </Row>
 
-                        <View type={"Invoice"}/>
+                        <Profile />
                         
                     </Col>
                 </Row>

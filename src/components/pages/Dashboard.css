@@ -19,7 +19,7 @@
     flex-direction: column;
 }
 
-.white-box div:first-child {
+.dashboard .white-box div:first-child {
     margin: auto;
 }
 
