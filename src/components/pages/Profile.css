@@ -1,0 +1,179 @@
+.profile {
+    padding: 20px;
+}
+
+.profile-box {
+    background-color: var(--light-blue);
+}
+
+.profile-box .white-box {
+    margin-bottom: 20px;
+}
+
+.profile-box label {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.profile-box .avatar {
+    display: flex;
+    align-items: center;
+}
+
+.profile-box .avatar label, .profile-box .avatar .white-button {
+    margin: 10px;
+}
+
+.profile-box .profile-avatar {
+    width: 100px;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 9999px;
+    max-width: 100%;
+    padding: 0;
+}
+
+.profile-box .white-button, .profile-box .white-button:active {
+    border: 1px solid #aaa !important;
+    padding: .375rem .75rem !important;
+}
+
+.profile-box .profile-input {
+    display: flex;
+}
+
+.profile-box .profile-input div, .profile-box .company-input div {
+    margin: 0px 10px 10px;
+}
+
+.profile-box input, .profile-box input:focus, .profile-box textarea, .profile-box textarea:focus {
+    background-color: #D9F0F1;
+    border: none;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.profile-box .decimal input {
+    margin: 5px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+}
+
+.profile-box .decimal input:checked {
+    background-color: #0d6efd;
+}
+
+.profile-box .decimal label {
+    margin-right: 20px;
+}
+
+.profile-box .password {
+    display: flex;
+} 
+
+.profile-box .password h5 {
+    margin: 0;
+    line-height: 2.5rem;
+}
+
+.profile-box .password .blue-button, .profile-box .password .white-button {
+    padding: 0 !important;
+    width: 27px;
+}
+
+/* Company */
+.profile-box .search-select.flex-class {
+    justify-content: flex-start;
+}
+
+.profile-box .search-select .css-1s2u09g-control, .profile-box .search-select .css-1pahdxg-control, .profile-box .search-select .css-1pahdxg-control:focus, .profile-box .search-select .css-1pahdxg-control:hover {
+    background-color: #D9F0F1;
+    border-radius: 10px !important;
+    outline: none !important;
+    border: none !important;
+    border-style: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 165px !important;
+}
+
+.css-b62m3t-container, .css-b62m3t-container:focus, .css-1s2u09g-control, .css-1s2u09g-control:focus, .css-319lph-ValueContainer, .css-319lph-ValueContainer:focus, .css-1hb7zxy-IndicatorsContainer, .css-1hb7zxy-IndicatorsContainer:focus, .css-tlfecz-indicatorContainer, .css-tlfecz-indicatorContainer:focus, .css-6j8wv5-Input, .css-6j8wv5-Input:focus, .css-14el2xx-placeholder, .css-14el2xx-placeholder:focus, .css-tlfecz-indicatorContainer, .css-tlfecz-indicatorContainer:focus, .css-1gtu0nj-indicatorContainer {
+    margin: 0 !important;
+}
+
+.avatar .qr, .avatar .e-sign {
+    border: 1px solid #aaa;
+    min-width: 120px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+}
+
+.avatar .e-sign {
+    min-width: 210px;
+}
+
+.avatar .qr svg, .avatar .e-sign svg {
+    display: block;
+    margin: auto;
+    width: 50px;
+}
+
+/* Info */
+.profile-box .info {
+    display: flex;
+}
+
+.profile-box .info a {
+    margin-left: 10px;
+    color: #0d6efd !important;
+    text-decoration: underline !important;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 576px) {
+    .company-input .avatar {
+        flex-direction: column !important;
+    }
+
+    .profile-box .flex-class, .profile-box .password, .profile-box .profile-input {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-box .avatar label {
+        margin-bottom: 10px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile {
+        padding: 10px !important;
+    }
+
+    .profile-box .white-box {
+        padding: 20px;
+    }
+
+    .company-input .avatar, .company-input .avatar div {
+        margin: 5px 0 !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile-box .avatar {
+        flex-direction: column !important;
+    }
+
+    .profile-box .edit-btn button, .profile-box .avatar label, .profile-box .avatar .white-button {
+        margin: 2px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .profile-box .white-box {
+        padding: 20px 0;
+    }
+}
+
+
