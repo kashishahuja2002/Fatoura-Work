@@ -1,8 +1,0 @@
-
-Sign in
-Sign up
-[Main Data] Container (side nav + header) --> Dashboard, Documents, Reports, (invoce/bill/quote/purchase), (profile/subscription/help), (edit/view)
-Dashboard container --> Dashboard box, Customer Name, History
-Dashboard box --> White boxes
-History --> Chart, Dropdowns, White Box
-Invoice/report box (bottom amt) --> Sub-header
