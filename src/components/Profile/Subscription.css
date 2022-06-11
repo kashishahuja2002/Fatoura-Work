@@ -1,0 +1,71 @@
+.sub {
+    padding: 20px;
+}
+
+.sub-box {
+    background-color: var(--light-blue);
+}
+
+.sub-box .white-box {
+    margin-bottom: 20px;
+}
+
+.sub-box .plan p:first-child {
+    font-weight: 600;
+}
+
+.sub-box .invoice-table {
+    min-height: auto;
+}
+
+.sub-box .invoice-table thead th:first-child, .sub-box .invoice-table tbody tr td:first-child {
+    padding-left: 40px;
+}
+
+.sub-box .invoice-table thead th:last-child, .sub-box .invoice-table tbody tr td:last-child {
+    padding-right: 40px;
+}
+
+.sub-box .invoice-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+.sub-box .invoice-table .blue-button {
+    position: relative;
+    left: 80%;
+}
+
+.sub-box .invoice-table .blue-button.second {
+    left: 100%;
+}
+
+.sub-box .invoice-table .more-form a {
+    color: #0055DC !important;
+    text-decoration: underline !important;
+}
+
+@media screen and (max-width: 800px) {
+    .sub-box .invoice-table thead th:first-child, .sub-box .invoice-table tbody tr td:first-child {
+        padding-left: 20px;
+    }
+    
+    .sub-box .invoice-table thead th:last-child, .sub-box .invoice-table tbody tr td:last-child {
+        padding-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sub {
+        padding: 10px !important;
+    }
+
+    .sub-box .white-box {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .sub-box .white-box {
+        padding: 20px 0;
+    }
+}
