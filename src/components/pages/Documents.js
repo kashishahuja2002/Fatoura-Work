@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Dropdown, Button } from "react-bootstrap";
 import './Documents.css';
-import InvoiceTable from "./InvoiceTable";
+import InvoiceTable from "../InvoiceTable";
 
 const Documents = () => {
     return (

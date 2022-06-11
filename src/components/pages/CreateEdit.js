@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, Container, Col, Row, Label, Table} from "reactstrap";
-import './InvoiceTable.css';
+import '../InvoiceTable.css';
 import './CreateEdit.css';
 
 import Select from 'react-select';

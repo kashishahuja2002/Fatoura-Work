@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Dropdown, Button } from "react-bootstrap";
 import './Reports.css';
-import InvoiceTable from "./InvoiceTable";
+import InvoiceTable from "../InvoiceTable";
 import { Input } from "reactstrap";
 
 const Reports = () => {
