@@ -1,0 +1,66 @@
+.invoice-table {
+    min-height: 700px;
+    position: relative;
+}
+
+.invoice-table .table {
+    margin: 15px 0;
+    border-collapse: unset;
+    border-spacing: 0;
+    border-radius: 20px;
+}
+
+.invoice-table thead {
+    background-color: #D9F0F1;
+    border-radius: 20px;
+}
+
+.invoice-table th {
+    vertical-align: middle;
+} 
+
+.invoice-table input,  .invoice-table input:checked, .invoice-table input:focus{
+    border-radius: 999px !important;
+    outline: 1px solid #aaa;
+    border: none;
+    box-shadow: none;
+}
+
+.invoice-table input:focus {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+}
+
+.invoice-table .action-btn {
+    background-color: #AFDEE1;
+    border: none;
+    margin: 5px;
+    border-radius: 999px;
+}
+
+.invoice-table .action-btn svg {
+    color: #000;
+    width: 15px;
+    position: relative;
+    bottom: 2px;
+}
+
+.invoice-table .flex-class {
+    margin: 15px;
+}
+
+.invoice-table .flex-class p {
+    margin: 0;
+}
+
+.rounded-l
+{
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+}
+
+.rounded-r
+{
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+}
