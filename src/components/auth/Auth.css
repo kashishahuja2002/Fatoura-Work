@@ -2,12 +2,6 @@ p {
     margin: 0!important;
 }
 
-a {
-    color: black !important;
-    text-decoration: none !important;
-    font-weight: bold;
-}
-
 .left-container {
     padding: 40px;
 }
@@ -15,6 +9,12 @@ a {
 .left-container .logo {
     margin-bottom: 50px;
     width: 30%;
+}
+
+.left-container a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .right-container {

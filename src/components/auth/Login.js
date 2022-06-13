@@ -2,8 +2,9 @@ import { React, useState } from "react";
 import './Login.css';
 import { GoogleLogin } from 'react-google-login';
 import { Button, Form, FormGroup, Input} from "reactstrap";
+import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const Login = () => {
 
     const responseGoogle = (response) => {
         console.log(response);
@@ -83,7 +84,7 @@ const Login = (props) => {
                     cookiePolicy={'single_host_origin'}
                 />
             </div>
-            <p>Let me in? <a href="#">Sign up</a> </p>
+            <p>Let me in? <Link to="/auth/signup">Sign Up</Link> </p>
         </>
     );
 }

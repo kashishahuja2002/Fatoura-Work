@@ -8,6 +8,10 @@ import Dashboard from './components/pages/Dashboard';
 import Documents from './components/pages/Documents';
 import Reports from './components/pages/Reports';
 import CreateEdit from './components/pages/CreateEdit';
+import View from './components/pages/View';
+import Profile from './components/profile/Profile';
+import Subscription from './components/profile/Subscription';
+import Help from './components/profile/Help';
 
 function App() {
     return (
@@ -20,10 +24,18 @@ function App() {
             </Routes>
             <Routes>
                 <Route path="/pages/" element={<HomeContainer />}>
-                    <Route index path="dashboard" element={<Dashboard />} />
+                    <Route path="dashboard" element={<Dashboard />} />
                     <Route path="myInvoices" element={<Documents />} />
                     <Route path="myReports" element={<Reports />} />
-                    <Route path="create-edit" element={<CreateEdit />} />
+                    <Route path="createEdit" element={<CreateEdit />} />
+                    <Route path="view" element={<View />} />
+                </Route>
+            </Routes>
+            <Routes>
+                <Route path="/profile/" element={<HomeContainer />}>
+                    <Route index element={<Profile />} />
+                    <Route path="subscription" element={<Subscription />} />
+                    <Route path="help" element={<Help />} />
                 </Route>
             </Routes>
         </BrowserRouter>

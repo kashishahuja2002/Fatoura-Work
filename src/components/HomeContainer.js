@@ -7,22 +7,18 @@ import SidebarCurve from "../assets/images/SidebarCurve.svg";
 import avatar from "../assets/images/avatar.jpg";
 import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-bootstrap';
 import './HomeContainer.css';
-// import Dashboard from './pages/Dashboard';
-// import Documents from './pages/Documents';
-// import Reports from './pages/Reports';
-// import CreateEdit from './pages/CreateEdit';
-// import View from './pages/View';
-// import Profile from './Profile/Profile';
-// import Subscription from './Profile/Subscription';
-import Help from './Profile/Help';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const HomeContainer = () => {
+    const navigate = useNavigate();
     return (
         <>
             <Container fluid>
                 <Row>
                     <Col xs={2} className="vertical-nav d-none d-lg-block">
-                        <Nav defaultActiveKey="/pages/dashboard" className="flex-column">
+                        <Nav defaultActiveKey="/pages/dashboard" className="flex-column"
+                            onSelect={(selectedKey) => navigate(selectedKey)}
+                        >
                             <img src={FatouraLogo} alt="Fatoura Logo" className="logo" />
                             <Nav.Link eventKey="/pages/dashboard">
                                 <img src={dashboard} alt="Fatoura Logo" className="m-1" />
@@ -30,13 +26,13 @@ const HomeContainer = () => {
                                 <span className="dot"></span>
                                 <img src={SidebarCurve} alt="Fatoura Logo" className="m-1 sidebar-curve" width="15px" />
                             </Nav.Link>
-                            <Nav.Link eventKey="/pages/documents">
+                            <Nav.Link eventKey="/pages/myInvoices">
                                 <img src={documents} alt="Fatoura Logo" className="m-1" />
                                 My Documents
                                 <span className="dot"></span>
                                 <img src={SidebarCurve} alt="Fatoura Logo" className="m-1 sidebar-curve" width="15px" />
                             </Nav.Link>
-                            <Nav.Link eventKey="/pages/reports">
+                            <Nav.Link eventKey="/pages/myReports">
                                 <img src={reports} alt="Fatoura Logo" className="m-1" />
                                 My Reports
                                 <span className="dot"></span>
@@ -55,10 +51,10 @@ const HomeContainer = () => {
                                             Create New +
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Invoice</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Bill</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Quote</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Purchase Order</Dropdown.Item>
+                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Invoice">Invoice</Link></Dropdown.Item>
+                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Bill">Bill</Link></Dropdown.Item>
+                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Quote">Quote</Link></Dropdown.Item>
+                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Purchase Order">Purchase Order</Link></Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                     <div className="right-header">
@@ -68,10 +64,10 @@ const HomeContainer = () => {
                                                 Hi, Kashish
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu align="end">
-                                                <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-2">Subscription</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-3">Help</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+                                                <Dropdown.Item><Link to="/profile">My Profile</Link></Dropdown.Item>
+                                                <Dropdown.Item><Link to="/profile/subscription">Subscription</Link></Dropdown.Item>
+                                                <Dropdown.Item><Link to="/profile/help">Help</Link></Dropdown.Item>
+                                                <Dropdown.Item><Link to="/profile">Logout</Link></Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
@@ -86,20 +82,22 @@ const HomeContainer = () => {
                                             </Offcanvas.Title>
                                         </Offcanvas.Header>
                                         <Offcanvas.Body className="vertical-nav">
-                                            <Nav defaultActiveKey="/pages/dashboard" className="flex-column">
+                                            <Nav defaultActiveKey="/pages/dashboard" className="flex-column"
+                                                onSelect={(selectedKey) => navigate(selectedKey)}
+                                            >
                                                 <Nav.Link eventKey="/pages/dashboard">
                                                     <img src={dashboard} alt="Fatoura Logo" className="m-1" />
                                                     Dashboard
                                                     <span className="dot"></span>
                                                     <img src={SidebarCurve} alt="Fatoura Logo" className="m-1 sidebar-curve" width="15px" />
                                                 </Nav.Link>
-                                                <Nav.Link eventKey="/pages/documents">
+                                                <Nav.Link eventKey="/pages/myInvoices">
                                                     <img src={documents} alt="Fatoura Logo" className="m-1" />
                                                     My Documents
                                                     <span className="dot"></span>
                                                     <img src={SidebarCurve} alt="Fatoura Logo" className="m-1 sidebar-curve" width="15px" />
                                                 </Nav.Link>
-                                                <Nav.Link eventKey="/pages/reports">
+                                                <Nav.Link eventKey="/pages/myReports">
                                                     <img src={reports} alt="Fatoura Logo" className="m-1" />
                                                     My Reports
                                                     <span className="dot"></span>
@@ -112,7 +110,7 @@ const HomeContainer = () => {
                             ))}
                         </Row>
 
-                        <Help />
+                        <Outlet />
                         
                     </Col>
                 </Row>

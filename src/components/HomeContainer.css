@@ -1,3 +1,8 @@
+.vertical-nav a, .vertical-nav a:hover, .header a, .header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 .vertical-nav, .offcanvas {
     background-color: var(--blue) !important;
     color: #fff;

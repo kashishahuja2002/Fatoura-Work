@@ -1,17 +1,21 @@
 import React from "react";
 import './CreateEdit.css';
 import './View.css';
-import { Button, Input, Container, Col, Row, Label, Table} from "reactstrap";
+import { Button, Container, Col, Row, Table} from "reactstrap";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
+const View = () => {
+    const [searchParams] = useSearchParams();
+    const type = searchParams.get('type');
 
-const View = (props) => {
+    const navigate = useNavigate();
 
-    const billingAddress = `{props.type} Billing Address
-{props.type} Billing Address
-{props.type} Billing Address
-{props.type} Billing Address
-{props.type} Billing Address
-{props.type} Billing Address`;
+    const billingAddress = `Invoice Billing Address
+Invoice Billing Address
+Invoice Billing Address
+Invoice Billing Address
+Invoice Billing Address
+Invoice Billing Address`;
 
     return (
         <Container fluid className="view">
@@ -19,34 +23,34 @@ const View = (props) => {
                 <Row>
                     <div className="view-head">
                         <div>
-                            <Button className="white-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 me-2 transform rtl:rotate-180"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                            <Button className="white-button" onClick={() => navigate('/pages/myInvoices')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 me-2 transform rtl:rotate-180"><path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd"></path></svg>
                                 Back
                             </Button>
                         </div>
                         <div>
-                            <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            <Button className="blue-button"  onClick={() => navigate('/pages/createEdit?task=edit&type=Invoice')}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                 Edit
                             </Button>
                             <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
                                 Copy
                             </Button>
                             <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                 Download
                             </Button>
                             <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                 Delete
                             </Button>
                             <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 Send by email
                             </Button>
                             <Button className="blue-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width={17} fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-4 w-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
                                 Payments
                             </Button>
                         </div>
@@ -55,20 +59,20 @@ const View = (props) => {
 
                 <div className="view-body">
                     <Row>
-                        <h4 className="text-center">{props.type.toUpperCase()}</h4>
+                        <h4 className="text-center">{type.toUpperCase()}</h4>
                     </Row>
 
                     <Row>
                         <Col xs={12} sm={7}>
-                            <p><b>{props.type} Number: </b>INV2022-00002</p>
-                            <p><b>{props.type} Date: </b>09-06-2022</p>
-                            <p><b>Reference Number: </b>{props.type} Reference Number</p>
+                            <p><b>{type} Number: </b>INV2022-00002</p>
+                            <p><b>{type} Date: </b>09-06-2022</p>
+                            <p><b>Reference Number: </b>{type} Reference Number</p>
                             <p><b>Due Date: </b>10-06-2022</p>
                             <div className="bdr-btm mt15">
                                 <p><b>Client Name</b></p>
                             </div>
                             <div className="bdr-btm mb15">
-                                <p className="mt-1 mb-1"><b>{props.type} Customer Name</b></p>
+                                <p className="mt-1 mb-1"><b>{type} Customer Name</b></p>
                                 <p><b>Billing Address:</b></p>
                                 <pre>{billingAddress}</pre>
                                 <p><b>Shipping Address:</b></p>
@@ -79,16 +83,16 @@ const View = (props) => {
                             <div className="img-box mb15">
                                 <img src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="Company Logo" />
                             </div>
-                            <p><b>{props.type} Company Name</b></p>
+                            <p><b>{type} Company Name</b></p>
                             <pre>{billingAddress}</pre>
-                            {props.type === "Invoice" && <p><b>Entity ID: </b>{props.type} Entity Id</p> }
-                            <p><b>Tax Number: </b>{props.type} Tax Number</p>
+                            {type === "Invoice" && <p><b>Entity ID: </b>{type} Entity Id</p> }
+                            <p><b>Tax Number: </b>{type} Tax Number</p>
                         </Col>
                     </Row>
 
                     <Row className="bdr-btm mb15">
                         <p><b>Description</b></p>
-                        <p>{props.type} Description</p>
+                        <p>{type} Description</p>
                     
                         <div className="invoice-table">
                             <Table responsive>
@@ -162,7 +166,7 @@ const View = (props) => {
                         <pre>{billingAddress}</pre>
                     </Row>
 
-                    {props.type === "Invoice" && 
+                    {type === "Invoice" && 
                         <>
                             <Row>
                                 <p><b>Digitally signed document</b></p>
@@ -174,13 +178,13 @@ const View = (props) => {
                             <Row>
                                 <div className="flex-class">
                                     <div className="qr">
-                                        E-{props.type}
+                                        E-{type}
                                         <div className="btm-qr">
                                             <img src="https://www.pngall.com/wp-content/uploads/2/QR-Code-PNG-Picture.png" alt="E-Invoice" />
                                         </div>
                                     </div>
                                     <div className="qr">
-                                        {props.type} QR Code Heading
+                                        {type} QR Code Heading
                                         <div className="btm-qr">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIcxm1tSJphluNimxurlape3Q9nhLcX3_apA&usqp=CAU" alt="QR Code" />
                                         </div>

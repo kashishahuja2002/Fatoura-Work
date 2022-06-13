@@ -3,6 +3,7 @@ import './Login.css';
 import './Signup.css';
 import { GoogleLogin } from 'react-google-login';
 import { Button, Form, FormGroup, Input} from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Signup = (props) => {
 
@@ -144,8 +145,7 @@ const Signup = (props) => {
                     cookiePolicy={'single_host_origin'}
                 />
             </div>
-            <p>Already a member? <a href="#">Sign In</a> </p>
-
+            <p>Already a member? <Link to="/auth/login">Sign In</Link> </p>
         </>
     );
 }

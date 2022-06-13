@@ -125,13 +125,13 @@ const Subscription = () => {
                                     <td>
                                         <Button className="blue-button">
                                             Upgrade
-                                            <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                            <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                         </Button>
                                     </td>
                                     <td>
                                         <Button className="blue-button second">
                                             Upgrade
-                                            <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                            <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                         </Button>
                                     </td>
                                 </tr>
@@ -141,13 +141,13 @@ const Subscription = () => {
                             <Col>
                                 <Button className="blue-button">
                                     Upgrade
-                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </Button>
                             </Col>
                             <Col>
                                 <Button className="blue-button">
                                     Upgrade
-                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </Button>
                             </Col>
                         </Row> */}
