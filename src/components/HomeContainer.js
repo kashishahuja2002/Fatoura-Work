@@ -11,12 +11,14 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const HomeContainer = () => {
     const navigate = useNavigate();
+    const pathname = window.location.pathname;
+
     return (
         <>
             <Container fluid>
                 <Row>
                     <Col xs={2} className="vertical-nav d-none d-lg-block">
-                        <Nav defaultActiveKey="/pages/dashboard" className="flex-column"
+                        <Nav defaultActiveKey={pathname} className="flex-column"
                             onSelect={(selectedKey) => navigate(selectedKey)}
                         >
                             <img src={FatouraLogo} alt="Fatoura Logo" className="logo" />

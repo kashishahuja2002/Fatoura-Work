@@ -4,136 +4,52 @@ import './Signup.css';
 import { GoogleLogin } from 'react-google-login';
 import { Button, Form, FormGroup, Input} from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signupApi } from "./Redux/authActions";
+import { useForm } from "react-hook-form";
 
-const Signup = (props) => {
+const Signup = () => {
+    const dispatch = useDispatch();
+
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
+    watch();
+    const onSubmit = (data) => {
+        console.log(data);
+        dispatch(signupApi());
+    }
 
     const responseGoogle = (response) => {
         console.log(response);
     }
 
-    const [inputValues, setInputValues] = useState({
-        fname : '',
-        lname : '',
-        email : '',
-        mobile : '',
-        password : '',
-        referal : ''
-    });
-
-    const [validationErrors, setValidationErrors] = useState({
-        fnameError : '',
-        lnameError : '',
-        emailError : '',
-        mobileError : '',
-        passwordError: ''
-    });
-
-    const validate = (name, value) => {
-        switch (name) {
-            case "fname":
-                if (!value) {
-                    return "First name is Required";
-                } 
-                else {
-                    return "";
-                }
-
-            case "lname":
-                if (!value) {
-                    return "Last name is Required";
-                } 
-                else {
-                    return "";
-                }
-
-            case "email":
-                if (!value) {
-                    return "Email is Required";
-                } 
-                else if (!value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-                    return "Enter a valid email address";
-                } 
-                else {
-                    return "";
-                }
-
-            case "mobile":
-                if (!value) {
-                    return "Mobile number is Required";
-                } 
-                else if (value.length !== 10) {
-                    return "Enter a valid mobile number";
-                } 
-                else {
-                    return "";
-                }
-
-            case "password":
-                if (!value) {
-                    return "Password is Required";
-                } 
-                else if (value.length < 8 || value.length > 15) {
-                    return "Please fill at least 8 character";
-                } 
-                else if (!value.match(/[a-z]/g)) {
-                    return "Please enter at least lower character.";
-                } 
-                else if (!value.match(/[A-Z]/g)) {
-                    return "Please enter at least upper character.";
-                } 
-                else if (!value.match(/[0-9]/g)) {
-                    return "Please enter at least one digit.";
-                } 
-                else {
-                    return "";
-                }
-                
-            default: {
-                return "";
-            }
-        }
-    };
-
-    const handleChange = (name) => e => {
-        setInputValues({...inputValues, [name] : e.target.value});
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        setValidationErrors({ ['fnameError']: validate("fname", e.target['fname'].value), ['lnameError']: validate("lname", e.target['lname'].value), ['emailError']: validate("email", e.target['email'].value), ['mobileError']: validate("mobile", e.target['mobile'].value), ['passwordError']: validate("password", e.target['password'].value) })
-    };
-
     return (
         <>
             <h4>Sign Up</h4>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
+            <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="name">
                         <div>
-                            <Input type="text" placeholder="Enter first name" name="fname" className="fname" onChange={handleChange("fname")} />
-                            <span className="error-text">{validationErrors["fnameError"]}</span>
+                            <input type="text" placeholder="First name" {...register("fname", {required: "First Name is required", minLength: {value: 3, message: "Enter minimum 3 characters"} })} />
+                            {errors.fname && <span className="error-text">{errors.fname.message}</span>}
                         </div>
-
                         <div>
-                            <Input type="text" placeholder="Enter last name" name="lname" className="lname" onChange={handleChange("lname")} />
-                            <span className="error-text">{validationErrors["lnameError"]}</span>
+                            <input type="text" placeholder="Last name" {...register("lname", {required: "Last Name is required", minLength: {value: 3, message: "Enter minimum 3 characters"} })} />
+                            {errors.lname && <span className="error-text">{errors.lname.message}</span>}
                         </div>
                     </div>
 
-                    <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
-                    <span className="error-text">{validationErrors["emailError"]}</span>
+                    <input type="email" placeholder="Email" {...register("email", {required: "Email is required", pattern: {value: /^\S+@\S+$/i, message: "Email address is invalid"} })} />
+                    {errors.email && <span className="error-text">{errors.email.message}</span>}
 
-                    <Input type="tel" placeholder="Enter mobile number" name="mobile" onChange={handleChange("mobile")} />
-                    <span className="error-text">{validationErrors["mobileError"]}</span>
+                    <input type="number" placeholder="Mobile number" {...register("mobile", {required: "Mobile number is required", valueAsNumber: true, maxLength: {value: 10, message: "Mobile number should be of 10 digits"}, minLength: {value: 10, message: "Mobile number should be of 10 digits"} })} />
+                    {errors.mobile && <span className="error-text">{errors.mobile.message}</span>}
 
-                    <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
-                    <span className="error-text">{validationErrors["passwordError"]}</span>
+                    <input type="password" placeholder="Password" {...register("password", {required: "Password", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
+                    {errors.password && <span className="error-text">{errors.password.message}</span>}
 
-                    <Input type="text" placeholder="Enter referal code (optional)" name="referal" onChange={handleChange("referal")} />
-                    <span className="error-text">{validationErrors["referalError"]}</span>
-                </FormGroup>
+                    <input type="text" placeholder="Referal Code" {...register("referal", {minLength: {value: 3, message: "Referal code should be of minimum 3 characters"} })} />
+                    {errors.referal && <span className="error-text">{errors.referal.message}</span>}
                 <Button type="submit" className="login">Create Account</Button>
-            </Form>
+            </form>
 
             <p>Sign up with Social Media</p>
             <div className="google">
