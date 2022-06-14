@@ -1,18 +1,17 @@
 import http from '../../../Services/_httpServices';
 import authKeyActionTypes from './authActionTypes';
 
-export const SignupApi = (body, setAuthenticated) => {
+export const AuthApi = (url, body, setAuthenticated) => {
     return (dispatch) => {
-        http.HttpCall("users/signUp", "post", body)
+        http.HttpCall(url, "post", body)
             .then((response) => {
-                console.log(response);
                 if(response.data.status === 200) {
                     localStorage.setItem("token", response.data.token);
-                    dispatch(signup(response.data.message, body));
+                    dispatch(auth(response.data.message, body));
                     setAuthenticated(response.data.token);
                 }
                 else 
-                    dispatch(signup(response.data.message, ''));
+                    dispatch(auth(response.data.message, ''));
             })
             .catch((error) => {
                 console.log("Error: ",error);
@@ -20,17 +19,10 @@ export const SignupApi = (body, setAuthenticated) => {
     }
 }
 
-const signup = (msg, body) => {
+const auth = (msg, body) => {
     return {
-        type: authKeyActionTypes.SIGN_UP,
+        type: authKeyActionTypes.AUTH,
         message: msg,
         user: body
-    }
-}
-
-const login = (data) => {
-    return {
-        type: authKeyActionTypes.LOGIN,
-        payload: data
     }
 }

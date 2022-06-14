@@ -1,78 +1,50 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import './Login.css';
 import { GoogleLogin } from 'react-google-login';
-import { Button, Form, FormGroup, Input} from "reactstrap";
+import { Button, FormGroup } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthApi } from "./Redux/authActions";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
+    const state = useSelector((store) => store);
+    const dispatch = useDispatch();
+
+    const { register, watch, handleSubmit, formState: { errors } } = useForm();
+    watch();
+    const onSubmit = (data) => {
+        dispatch(AuthApi("/users/login", data, props.setAuthenticated));
+    }
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(props.isAuthenticated !== null)
+            navigate('/pages/dashboard');
+    }, [props.isAuthenticated]);
 
     const responseGoogle = (response) => {
         console.log(response);
     }
 
-    const [inputValues, setInputValues] = useState({
-        email : '',
-        password : ''
-    });
-
-    const [validationErrors, setValidationErrors] = useState({
-        emailError : '',
-        passwordError : ''
-    });
-
-    const validate = (name, value) => {
-        switch (name) {
-            case "email":
-                if (!value) {
-                    return "Email is Required";
-                } 
-                else if (!value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-                    return "Enter a valid email address";
-                } 
-                else {
-                    return "";
-                }
-
-            case "password":
-                if (!value) {
-                    return "Password is Required";
-                } 
-                else {
-                    return "";
-                }
-                
-            default: {
-                return "";
-            }
-        }
-    };
-
-    const handleChange = (name) => e => {
-        setInputValues({...inputValues, [name] : e.target.value});
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        let emailError = validate("email", e.target['email'].value);
-        let passwordError = validate("password", e.target['password'].value);
-        setValidationErrors({['emailError']: emailError, ['passwordError']: passwordError})
-    };
-
     return (
         <>
             <h4>Sign In</h4>
-            <Form onSubmit={handleSubmit}>
+            <h5 className="error-text">{state.auth.message}</h5>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <FormGroup>
-                    <Input type="email" placeholder="Enter email" name="email" onChange={handleChange("email")} />
-                    <span className="error-text">{validationErrors["emailError"]}</span>
+                    <input type="email" placeholder="Email" {...register("email", {required: "Email is required", pattern: {value: /^\S+@\S+$/i, message: "Email address is invalid"} })} />
+                    {errors.email && <span className="error-text">{errors.email.message}</span>}
 
-                    <Input type="password" placeholder="Enter password" name="password" onChange={handleChange("password")} />
-                    <span className="error-text">{validationErrors["passwordError"]}</span>
-
-                    <a href="#">Forgot your password?</a>
+                    <input type="password" placeholder="Password" {...register("password", {required: "Password", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
+                    {errors.password && <span className="error-text">{errors.password.message}</span>}
                 </FormGroup>
+                <div>
+                    <a href="#">Forgot your password?</a>
+                </div>
                 <Button type="submit" className="login">Let me in</Button>
-            </Form>
+            </form>
 
             <p>Sign in with Social Media</p>
             <div className="google">

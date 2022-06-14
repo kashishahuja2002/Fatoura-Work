@@ -5,7 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { SignupApi } from "./Redux/authActions";
+import { AuthApi } from "./Redux/authActions";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const Signup = (props) => {
     const { register, watch, handleSubmit, formState: { errors } } = useForm();
     watch();
     const onSubmit = (data) => {
-        dispatch(SignupApi(data, props.setAuthenticated));
+        dispatch(AuthApi("/users/signUp", data, props.setAuthenticated));
     }
 
     const navigate = useNavigate();

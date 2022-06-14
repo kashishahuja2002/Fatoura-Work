@@ -1,7 +1,5 @@
-const SIGN_UP = 'SIGN_UP';
-const LOGIN = 'LOGIN';
+const AUTH = 'AUTH';
 
 export default {
-    SIGN_UP,
-    LOGIN
+    AUTH
 }
