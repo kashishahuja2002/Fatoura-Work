@@ -1,10 +1,15 @@
-const initialState = {}
+const initialState = {
+    message: "",
+    userData: {}
+};
 
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case "SIGN_UP": 
             return {
-                ...action.data
+                ...state,
+                message: action.message,
+                userData: action.user,
             };
 
         default:

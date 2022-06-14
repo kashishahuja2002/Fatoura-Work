@@ -1,20 +1,18 @@
 import http from '../../../Services/_httpServices';
 import authKeyActionTypes from './authActionTypes';
 
-export const signupApi = () => {
+export const SignupApi = (body, setAuthenticated) => {
     return (dispatch) => {
-        var body = {
-            "email": "demoacassdfcount@gmail.com",
-            "firstName": "demoaccount",
-            "lastName": "lastname",
-            "password": "India@123",
-            "phoneNumber": 1123412342133,
-            "referallCode": ""
-        };
-
         http.HttpCall("users/signUp", "post", body)
             .then((response) => {
                 console.log(response);
+                if(response.data.status === 200) {
+                    localStorage.setItem("token", response.data.token);
+                    dispatch(signup(response.data.message, body));
+                    setAuthenticated(response.data.token);
+                }
+                else 
+                    dispatch(signup(response.data.message, ''));
             })
             .catch((error) => {
                 console.log("Error: ",error);
@@ -22,10 +20,11 @@ export const signupApi = () => {
     }
 }
 
-const signup = (data) => {
+const signup = (msg, body) => {
     return {
         type: authKeyActionTypes.SIGN_UP,
-        payload: data
+        message: msg,
+        user: body
     }
 }
 
