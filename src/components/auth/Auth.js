@@ -3,6 +3,7 @@ import './Auth.css';
 import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import { Container, Col, Row} from "reactstrap";
 import { Outlet } from "react-router-dom";
+import sectionImage from "../../assets/images/section3.3.svg";
 
 const Auth = () => {
     return (
@@ -15,7 +16,9 @@ const Auth = () => {
                     </div>
                 </Col>
                 <Col md={6} className="d-none d-md-block">
-                    <div className="right-container"></div>
+                    <div className="right-container">
+                        <img src={sectionImage} alt="Section" />
+                    </div>
                 </Col>
             </Row>
         </Container>

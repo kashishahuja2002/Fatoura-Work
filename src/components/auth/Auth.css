@@ -23,6 +23,15 @@ p {
     height: 100%;
 }
 
+.right-container img {
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 @media screen and (max-width: 1200px) {
     .left-container .logo {
         width: 60%;
