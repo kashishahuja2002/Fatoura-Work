@@ -12,13 +12,17 @@ import View from './components/pages/View';
 import Profile from './components/profile/Profile';
 import Subscription from './components/profile/Subscription';
 import Help from './components/profile/Help';
+import { useState } from 'react';
 
 function App() {
+    const token = localStorage.getItem('token');
+    const [isAuthenticated, setAuthenticated] = useState(token);
+    
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/auth/" element={<Auth />}>
-                    <Route path="signup" element={<Signup />} />
+                    <Route path="signup" element={<Signup isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />} />
                     <Route path="login" element={<Login />} />
                 </Route>
             </Routes>
