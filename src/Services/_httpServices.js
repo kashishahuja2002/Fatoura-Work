@@ -1,5 +1,5 @@
 
-const BaseUrl = "https://localhost:3100/";
+const BaseUrl = "http://localhost:3100/";
 const axios = require("axios");
 
 // For Post Api Calls And Put
@@ -17,7 +17,6 @@ const HttpCall = async (method, type, body) => {
             "Access-Control-Allow-Origin": "*",
             "Authorization": token,
         },
-        // auth: { username: '2bdb4838-fc3b-4a84-aa5c-2f38bc97e7dd', password: '' }
         })
         .then((response) => {
             if (response && response.status === 200) {
@@ -45,7 +44,6 @@ const HttpGet = async (method, type) => {
             "Access-Control-Allow-Origin": "*",
             "Authorization": token,
         },
-        // auth: { username: '2bdb4838-fc3b-4a84-aa5c-2f38bc97e7dd', password: '' }
         })
         .then((response) => {
             if (response && response.status === 200) {
