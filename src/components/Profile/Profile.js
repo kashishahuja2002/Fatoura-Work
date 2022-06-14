@@ -19,7 +19,7 @@ const Profile = () => {
                     <h5>Profile Picture</h5>
 
                     <div className="avatar">
-                        <img src={Avatar} alt="Profile Picture" class="profile-avatar" />
+                        <img src={Avatar} alt="Profile avatar" class="profile-avatar" />
                     
                         <Label for="profile-picture" className="blue-button m-3">Add Image</Label>
                         <Input type="file" hidden id="profile-picture" />

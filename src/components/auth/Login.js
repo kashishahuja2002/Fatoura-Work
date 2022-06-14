@@ -77,7 +77,7 @@ const Login = () => {
             <p>Sign in with Social Media</p>
             <div className="google">
                 <GoogleLogin
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                    clientId="911759613041-41d2uv6i0m0s8gnsras7mqpqldhdjrov.apps.googleusercontent.com"
                     buttonText="Sign in with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}

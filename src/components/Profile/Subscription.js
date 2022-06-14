@@ -152,7 +152,7 @@ const Subscription = () => {
                             </Col>
                         </Row> */}
                         <div className="more-form">
-                            <p>Need more forms limit? Contact us <a href="#">here</a></p>
+                            <p>Need more forms limit? Contact us <a href="/profile/help">here</a></p>
                         </div>
                     </div>
                 </Row>
