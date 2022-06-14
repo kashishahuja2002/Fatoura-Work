@@ -1,5 +1,5 @@
 
-const BaseUrl = "http://localhost:3100/";
+const BaseUrl = "http://localhost:3100";
 const axios = require("axios");
 
 // For Post Api Calls And Put
