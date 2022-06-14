@@ -13,7 +13,10 @@ const Signup = (props) => {
     const state = useSelector((store) => store);
     const dispatch = useDispatch();
 
-    const { register, watch, handleSubmit, formState: { errors } } = useForm();
+    const { register, watch, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange',
+    });
     watch();
     const onSubmit = (data) => {
         dispatch(AuthApi("/users/signUp", data, props.setAuthenticated));
