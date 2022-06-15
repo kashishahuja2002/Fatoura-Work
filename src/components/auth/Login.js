@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import './Login.css';
 import { GoogleLogin } from 'react-google-login';
 import { Button, FormGroup } from "reactstrap";
@@ -25,7 +25,7 @@ const Login = (props) => {
     useEffect(() => {
         if(props.isAuthenticated !== null)
             navigate('/pages/dashboard');
-    }, [props.isAuthenticated]);
+    }, [props.isAuthenticated, navigate]);
 
     const responseGoogle = (response) => {
         console.log(response);
@@ -43,9 +43,9 @@ const Login = (props) => {
                     <input type="password" placeholder="Password" {...register("password", {required: "Password", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
                     {errors.password && <span className="error-text">{errors.password.message}</span>}
                 </FormGroup>
-                <div>
-                    <a href="#">Forgot your password?</a>
-                </div>
+                {/* <div>
+                    <a href="/pages/forgotPassword">Forgot your password?</a>
+                </div> */}  
                 <Button type="submit" className="login">Let me in</Button>
             </form>
 

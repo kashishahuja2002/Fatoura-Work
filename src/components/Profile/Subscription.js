@@ -3,6 +3,7 @@ import './Subscription.css';
 import '../InvoiceTable.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import { Table } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Subscription = () => {
     return (
@@ -137,22 +138,8 @@ const Subscription = () => {
                                 </tr>
                             </tbody>
                         </Table>
-                        {/* <Row>
-                            <Col>
-                                <Button className="blue-button">
-                                    Upgrade
-                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                </Button>
-                            </Col>
-                            <Col>
-                                <Button className="blue-button">
-                                    Upgrade
-                                    <svg _ngcontent-oqb-c73="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6 ms-2 transform rtl:rotate-180"><path _ngcontent-oqb-c73="" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                </Button>
-                            </Col>
-                        </Row> */}
                         <div className="more-form">
-                            <p>Need more forms limit? Contact us <a href="/profile/help">here</a></p>
+                            <p>Need more forms limit? Contact us <Link to="/profile/help">here</Link></p>
                         </div>
                     </div>
                 </Row>

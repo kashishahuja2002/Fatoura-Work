@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import './Login.css';
 import './Signup.css';
 import { GoogleLogin } from 'react-google-login';
@@ -26,7 +26,7 @@ const Signup = (props) => {
     useEffect(() => {
         if(props.isAuthenticated !== null)
             navigate('/pages/dashboard');
-    }, [props.isAuthenticated]);
+    }, [props.isAuthenticated, navigate]);
 
     const responseGoogle = (response) => {
         console.log(response);
