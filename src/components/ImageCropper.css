@@ -1,8 +1,0 @@
-.ReactCrop--invisible-crop .ReactCrop__crop-selection {
-    display: block;
-    position: absolute;
-    top: 100px;
-    left: 150px;
-    width: 100px;
-    height: 100px;
-}

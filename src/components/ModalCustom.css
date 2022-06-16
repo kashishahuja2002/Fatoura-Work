@@ -11,6 +11,20 @@ body.modal-open {
     display: none;
 }
 
+.modal-body {
+    width: fit-content;
+    display: block;
+    margin: auto;
+}
+
+.cropped-circular {
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 9999px;
+    padding: 0;
+}
+
 .modal-footer {
     background-color:#f5f6f7;
     display: flex;

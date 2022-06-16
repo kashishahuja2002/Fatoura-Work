@@ -26,15 +26,19 @@
 
 .profile-box .profile-avatar {
     width: 100px;
+    height: 100px;
     border: 1px solid rgb(203, 203, 203);
     border-radius: 9999px;
-    max-width: 100%;
     padding: 0;
 }
 
 .profile-box .white-button, .profile-box .white-button:active {
     border: 1px solid #aaa !important;
     padding: .375rem .75rem !important;
+}
+
+.form-control:disabled {
+    background-color: #D9F0F1;
 }
 
 .profile-box .profile-input {

@@ -1,16 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import './Profile.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import Avatar from '../../assets/images/avatar.jpg'
 import { Input, Label } from "reactstrap";
 import Select from 'react-select';
+import ModalCustom from "../ModalCustom";
 
 const Profile = () => {
+
     const options = [
         { value: 'AED', label: 'AED' },
         { value: 'AFN', label: 'AFN' },
         { value: 'AMD', label: 'AMD' }
     ];
+
+    const [openModal, setOpenModal] = useState(false);
+    const [modalSrc, setModalSrc] = useState(false);
+
+    const modalClosed = () => {
+        setOpenModal(false);
+    }
+    
+    const [avatarSrc, setAvatarSrc] = useState(null);
+    const [logoSrc, setLogoSrc] = useState(null);
+
+    const handleImageChange = (e, id) => {
+        if(id === "profile-picture") {
+            setAvatarSrc(URL.createObjectURL(e.target.files[0]));
+        }
+        else {
+            setLogoSrc(URL.createObjectURL(e.target.files[0]));
+        }
+        setModalSrc(URL.createObjectURL(e.target.files[0]));
+        e.target.value = null;
+        setOpenModal(true);
+    };
+
+    const handleImageRemove = (e, id) => {
+        if(id === "profile-picture") {
+            setAvatarSrc(null);
+        }
+        else {
+            setLogoSrc(null);
+        }
+    };
 
     return (
         <Container fluid className="profile">
@@ -19,13 +52,16 @@ const Profile = () => {
                     <h5>Profile Picture</h5>
 
                     <div className="avatar">
-                        <img src={Avatar} alt="Profile avatar" className="profile-avatar" />
-                    
-                        <Label for="profile-picture" className="blue-button m-3">Add Image</Label>
-                        <Input type="file" hidden id="profile-picture" />
+                        <img src={avatarSrc ? avatarSrc : Avatar} alt="Profile avatar" className="profile-avatar" />
+                        <Input type="file" accept="image/*" hidden id="profile-picture" onChange={(e) => handleImageChange(e,"profile-picture")} />
                         <div>
-                            {/* <Label for="profile-picture" className="blue-button">Change</Label>
-                            <Button className="white-button">Remove</Button> */}
+                            {avatarSrc == null
+                                ? <Label for="profile-picture" className="blue-button m-3">Add Image</Label>
+                                : <>
+                                    <Label for="profile-picture" className="blue-button">Change</Label>
+                                    <Button className="white-button" onClick={(e) => handleImageRemove(e,"profile-picture")} >Remove</Button>
+                                </>
+                            }
                         </div>
                     </div>
 
@@ -42,22 +78,22 @@ const Profile = () => {
                         <div className="profile-input">
                             <div>
                                 <Label>First Name</Label>
-                                <Input type="text" />
+                                <Input type="text" disabled />
                             </div>
                             <div>
                                 <Label>Last Name</Label>
-                                <Input type="text" />
+                                <Input type="text" disabled  />
                             </div>
                         </div>
 
                         <div className="profile-input">
                             <div>
                                 <Label>Email Address</Label>
-                                <Input type="email" />
+                                <Input type="email" disabled  />
                             </div>
                             <div>
                                 <Label>Contact Number</Label>
-                                <Input type="tel" />
+                                <Input type="tel" disabled  />
                             </div>
                         </div>
 
@@ -79,11 +115,11 @@ const Profile = () => {
                         <div className="profile-input">
                             <div>
                                 <Label>New Password</Label>
-                                <Input type="password" />
+                                <Input type="password" disabled />
                             </div>
                             <div>
                                 <Label>Confirm Password</Label>
-                                <Input type="password" />
+                                <Input type="password" disabled  />
                             </div>
                         </div>
                     </Col>
@@ -93,13 +129,16 @@ const Profile = () => {
                     <h5>Company Logo</h5>
 
                     <div className="avatar">
-                        <img src={Avatar} alt="Company Logo" className="profile-avatar" />
-                    
-                        {/* <Label for="profile-picture" className="blue-button m-3">Add Image</Label> */}
-                        <Input type="file" hidden id="company-logo" />
+                        <img src={logoSrc ? logoSrc : Avatar} alt="Company Logo" className="profile-avatar" />
+                        <Input type="file" accept='image/*' hidden id="company-logo" onChange={(e) => handleImageChange(e,"company-logo")} />
                         <div>
-                            <Label for="company-logo" className="blue-button">Change</Label>
-                            <Button className="white-button">Remove</Button>
+                            {logoSrc == null 
+                                ? <Label for="company-logo" className="blue-button m-3">Add Image</Label>
+                                : <>
+                                    <Label for="company-logo" className="blue-button">Change</Label>
+                                    <Button className="white-button" onClick={(e) => handleImageRemove(e,"company-logo")}>Remove</Button>
+                                </>
+                            }
                         </div>
                     </div>
 
@@ -190,6 +229,8 @@ const Profile = () => {
                     <p>This is a Pro feature. Upgrade your account to configure these settings</p>
                 </Row>
             </div>
+
+            {openModal && <ModalCustom openModal={openModal} modalClosed={modalClosed} src={modalSrc} btnValue2="Preview" />}
         </Container>
     );
 }
