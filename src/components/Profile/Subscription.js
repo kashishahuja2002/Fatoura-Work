@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Subscription.css';
 import '../InvoiceTable.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
+import { getPlans } from "./Redux/profileActions";
+import { useDispatch } from "react-redux";
 
 const Subscription = () => {
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getPlans("/users/getUser"));
+    // }, [])
+
     return (
         <Container fluid className="sub">
             <div className="sub-box box">
