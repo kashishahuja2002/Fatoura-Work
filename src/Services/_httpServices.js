@@ -15,7 +15,7 @@ const HttpCall = async (method, type, body) => {
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Authorization": token,
+            "Token": token,
         },
         })
         .then((response) => {
@@ -42,7 +42,7 @@ const HttpGet = async (method, type) => {
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Authorization": token,
+            "Token": token,
         },
         })
         .then((response) => {
