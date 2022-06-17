@@ -6,7 +6,8 @@ const axios = require("axios");
 const HttpCall = async (method, type, body) => {
     return new Promise(async function (resolve, reject) {
         const url = BaseUrl + method;
-        const token = localStorage.getItem('token');
+        // const token = localStorage.getItem('token');
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmE4NTVjNTNhMGZkYzFhOThkNTg4ZTUiLCJ0IjoiVVNFUiIsImlhdCI6MTY1NTE5OTE3NH0.cGdI4xVdSiUeLrVP-5Q1IurSIpSMbcZkVNRi2odmbI8";
         axios({
         method: type,
         url: url,
@@ -34,7 +35,8 @@ const HttpCall = async (method, type, body) => {
 const HttpGet = async (method, type) => {
     return new Promise(async function (resolve, reject) {
         const url = BaseUrl + method;
-        const token = localStorage.getItem('token');
+        // const token = localStorage.getItem('token');
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmE4NTVjNTNhMGZkYzFhOThkNTg4ZTUiLCJ0IjoiVVNFUiIsImlhdCI6MTY1NTE5OTE3NH0.cGdI4xVdSiUeLrVP-5Q1IurSIpSMbcZkVNRi2odmbI8";
         axios({
         method: type,
         url: url,

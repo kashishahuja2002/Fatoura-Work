@@ -1,6 +1,5 @@
 const initialState = {
-    message: "",
-    userData: {}
+    message: ""
 };
 
 const authReducer = (state = initialState, action) => {
@@ -8,8 +7,7 @@ const authReducer = (state = initialState, action) => {
         case "AUTH": 
             return {
                 ...state,
-                message: action.message,
-                userData: action.user,
+                message: action.message
             };
 
         default:

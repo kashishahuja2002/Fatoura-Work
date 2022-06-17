@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
-    const state = useSelector((store) => store);
+    const state = useSelector((store) => store.auth);
     const dispatch = useDispatch();
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm({
@@ -35,7 +35,7 @@ const Signup = (props) => {
     return (
         <>
             <h4>Sign Up</h4>
-            <h5 className="error-text">{state.auth.message}</h5>
+            <h5 className="error-text">{state.message}</h5>
             <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="name">
                         <div>

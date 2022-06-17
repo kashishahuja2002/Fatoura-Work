@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import FatouraLogo from "../assets/images/Fatoura-Logo.png";
 import dashboard from "../assets/images/Mask Group 7.svg";
 import documents from "../assets/images/Mask Group 392.svg";
@@ -8,11 +8,20 @@ import avatar from "../assets/images/avatar.jpg";
 import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-bootstrap';
 import './HomeContainer.css';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser, getInvoiceCount } from './profile/Redux/profileActions';
 
 const HomeContainer = () => {
     const navigate = useNavigate();
     const pathname = window.location.pathname;
+    
+    const state = useSelector((store) => store);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getUser("/users/getUser"));
+    },[]);
+    
     return (
         <>
             <Container fluid>

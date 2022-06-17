@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-    const state = useSelector((store) => store);
+    const state = useSelector((store) => store.auth);
     const dispatch = useDispatch();
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm({
@@ -34,7 +34,7 @@ const Login = (props) => {
     return (
         <>
             <h4>Sign In</h4>
-            <h5 className="error-text">{state.auth.message}</h5>
+            <h5 className="error-text">{state.message}</h5>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormGroup>
                     <input type="email" placeholder="Email" {...register("email", {required: "Email is required", pattern: {value: /^\S+@\S+$/i, message: "Email address is invalid"} })} />
