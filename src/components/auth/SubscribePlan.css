@@ -1,0 +1,27 @@
+.sub-box {
+    background-color: #EBF6F7;
+}
+
+.sub-box .container {
+    padding: 30px;
+}
+
+.sub-box .logo {
+    width: 200px;
+}
+
+.sub-box .invoice-table .white-button, .sub-box .invoice-table .white-button:focus, .sub-box .invoice-table .white-button:active {
+    border: 1px solid #aaa !important;
+    position: relative;
+    left: 90%;
+    padding: 5px 15px !important;
+}
+
+.sub-box .invoice-table .blue-button {
+    position: relative;
+    left: 90%;
+}
+
+.sub-box .invoice-table .blue-button.second {
+    left: 105%;
+}
