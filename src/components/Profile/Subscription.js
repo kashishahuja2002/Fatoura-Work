@@ -25,7 +25,7 @@ const Subscription = () => {
     const handleUpgrade = (e) => {
         var body = {
             "planId": e.target.id, 
-            "id": "61234019ffc55a275811bb95", // to update later (getUser _id) 
+            "id": state.user.data._id,
             "expiryDate": null
         };
         dispatch(upgradePlan("/subscription/subscribePlan", body));
