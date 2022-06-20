@@ -13,6 +13,7 @@ import Profile from './components/profile/Profile';
 import Subscription from './components/profile/Subscription';
 import Help from './components/profile/Help';
 import { useState } from 'react';
+import SubscribePlan from './components/auth/SubscribePlan';
 
 function App() {
     const token = localStorage.getItem('token');
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/auth/" element={<Auth />}>
                     <Route path="signup" element={<Signup isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />} />
                     <Route path="login" element={<Login isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />} />
+                    <Route path="subscribe-plan" element={<SubscribePlan />} />
                 </Route>
             </Routes>
             <Routes>
