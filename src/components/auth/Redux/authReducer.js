@@ -7,7 +7,7 @@ const authReducer = (state = initialState, action) => {
         case "AUTH": 
             return {
                 ...state,
-                message: action.message
+                message: action.payload
             };
 
         default:
