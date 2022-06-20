@@ -25,7 +25,6 @@ const CreateEdit = () => {
     ];
 
     const imageUpload = (e) => {
-        console.log(e.target.value);
         setOpenModal(true);
     }
 
