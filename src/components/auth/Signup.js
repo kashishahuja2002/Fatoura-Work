@@ -25,7 +25,7 @@ const Signup = (props) => {
     const navigate = useNavigate();
     useEffect(() => {
         if(props.isAuthenticated !== null)
-            navigate('/pages/dashboard');
+            navigate('/auth/subscribe-plan');
     }, [props.isAuthenticated, navigate]);
 
     const responseGoogle = (response) => {
