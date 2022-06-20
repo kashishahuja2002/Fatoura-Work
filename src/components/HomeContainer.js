@@ -62,10 +62,10 @@ const HomeContainer = () => {
                                             Create New +
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Invoice">Invoice</Link></Dropdown.Item>
-                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Bill">Bill</Link></Dropdown.Item>
-                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Quote">Quote</Link></Dropdown.Item>
-                                            <Dropdown.Item><Link to="/pages/createEdit?task=create&type=Purchase Order">Purchase Order</Link></Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/pages/createEdit?task=create&type=Invoice">Invoice</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/pages/createEdit?task=create&type=Bill">Bill</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/pages/createEdit?task=create&type=Quote">Quote</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/pages/createEdit?task=create&type=Purchase Order">Purchase Order</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                     <div className="right-header">
@@ -75,10 +75,10 @@ const HomeContainer = () => {
                                                 Hi, {state.profile.user.data ? state.profile.user.data.firstName : "User"}
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu align="end">
-                                                <Dropdown.Item><Link to="/profile">My Profile</Link></Dropdown.Item>
-                                                <Dropdown.Item><Link to="/profile/subscription">Subscription</Link></Dropdown.Item>
-                                                <Dropdown.Item><Link to="/profile/help">Help</Link></Dropdown.Item>
-                                                <Dropdown.Item><Link to="/profile">Logout</Link></Dropdown.Item>
+                                                <Dropdown.Item as={Link} to="/profile">My Profile</Dropdown.Item>
+                                                <Dropdown.Item as={Link} to="/profile/subscription">Subscription</Dropdown.Item>
+                                                <Dropdown.Item as={Link} to="/profile/help">Help</Dropdown.Item>
+                                                <Dropdown.Item as={Link} to="/">Logout</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
