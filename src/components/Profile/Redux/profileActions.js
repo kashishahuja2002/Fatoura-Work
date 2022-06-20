@@ -25,7 +25,7 @@ export const getUser = (url) => {
             .then((response) => {
                 if(response.data.status === 200) {
                     dispatch(user(response.data));
-                    var body = {"fromDate": response.data.data.createdAt}
+                    var body = {"fromDate": response.data.data.createdAt}   // check date to be passed
                     dispatch(getInvoiceCount("/invoice/getInvoiceCount", body));
                 }
                 else 
