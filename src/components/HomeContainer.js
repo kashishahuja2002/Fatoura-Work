@@ -9,7 +9,7 @@ import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-boo
 import './HomeContainer.css';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, getInvoiceCount } from './profile/Redux/profileActions';
+import { getUser } from './profile/Redux/profileActions';
 
 const HomeContainer = () => {
     const navigate = useNavigate();
@@ -72,7 +72,7 @@ const HomeContainer = () => {
                                         <Dropdown className="blue-dropdown">
                                             <Dropdown.Toggle id="dropdown-basic" className="user" >
                                                 <img src={avatar} alt="user" width={32} />
-                                                Hi, Kashish
+                                                Hi, {state.profile.user.data ? state.profile.user.data.firstName : "User"}
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu align="end">
                                                 <Dropdown.Item><Link to="/profile">My Profile</Link></Dropdown.Item>
