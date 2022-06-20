@@ -29,7 +29,7 @@ const SubscribePlan = () => {
         var body = {
             "planId": e.target.id, 
             "id": state.user.data._id,
-            "expiryDate": null
+            "expiryDate": state.user.data.subscription?.expiryDate ? state.user.data.subscription?.expiryDate : null
         };
         dispatch(upgradePlan("/subscription/subscribePlan", body));
     }

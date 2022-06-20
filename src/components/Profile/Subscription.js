@@ -26,11 +26,24 @@ const Subscription = () => {
         var body = {
             "planId": e.target.id, 
             "id": state.user.data._id,
-            "expiryDate": null
+            "expiryDate": state.user.data.subscription?.expiryDate ? state.user.data.subscription?.expiryDate : null
         };
         dispatch(upgradePlan("/subscription/subscribePlan", body));
     }
 
+    let subId = null;
+    let userPlan = {};
+    let expDate = '';
+    let invoiceBalance = 0;
+    if(state.user.data && state.plans.data) {
+        subId = state.user.data.subscription.subscriptionId;
+        userPlan = state.plans.data.filter(plan => plan._id == subId);
+        let date = new Date(state.user.data.subscription.expiryDate);
+        expDate = date.toLocaleString('default', { month: 'long' }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
+        if(state.invoice && Object.keys(state.invoice).length !== 0)
+            invoiceBalance = userPlan[0].features[0]["Form limitation"] - state.invoice.data;
+    }
+    
     return (
         <Container fluid className="sub">
             <div className="sub-box box">
@@ -39,19 +52,19 @@ const Subscription = () => {
                     <Row className="plan">
                         <Col xs={5} sm={3}>
                             <p>Plan</p>
-                            <p>Basic</p>
+                            <p>{userPlan[0] ? userPlan[0].planName : ''}</p>
                         </Col>
                         <Col xs={7} sm={3}>
                             <p>Remaining Balance</p>
-                            <p className="mb-4">5 Invoices</p>
+                            <p className="mb-4">{invoiceBalance} Invoices</p>
                         </Col>
                         <Col xs={5} sm={3}>
                             <p>Price</p>
-                            <p>$140.00</p>
+                            <p>${userPlan[0] ? userPlan[0].planPrice : '0'}.00</p>
                         </Col>
                         <Col xs={7} sm={3}>
                             <p>Expiration Date</p>
-                            <p>Jun 7, 2023</p>
+                            <p>{expDate}</p>
                         </Col>
                     </Row>  
                 </Row>
