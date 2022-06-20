@@ -7,11 +7,11 @@ export const AuthApi = (url, body, setAuthenticated) => {
             .then((response) => {
                 if(response.data.status === 200) {
                     localStorage.setItem("token", response.data.token);
-                    dispatch(auth(response.data.message, body));
+                    dispatch(auth(response.data.message));
                     setAuthenticated(response.data.token);
                 }
                 else 
-                    dispatch(auth(response.data.message, ''));
+                    dispatch(auth(response.data.message));
             })
             .catch((error) => {
                 console.log("Error: ",error);
@@ -19,10 +19,26 @@ export const AuthApi = (url, body, setAuthenticated) => {
     }
 }
 
-const auth = (msg, body) => {
+export const subscribePlan = (url, body) => {
+    return (dispatch) => {
+        http.HttpCall(url, "post", body)
+            .then((response) => {
+                if(response.data.status === 200) {
+                    console.log("First time login: ",response.data);
+                    dispatch(auth(response.data.message));
+                }
+                else 
+                    console.log("Response: ",response);
+            })
+            .catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+}
+
+const auth = (msg) => {
     return {
         type: authKeyActionTypes.AUTH,
-        message: msg,
-        user: body
+        payload: msg,
     }
 }
