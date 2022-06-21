@@ -38,7 +38,7 @@
 }
 
 .form-control:disabled {
-    background-color: #D9F0F1;
+    background-color: #D9F0F1 !important;
 }
 
 .profile-box .profile-input {
@@ -49,11 +49,14 @@
     margin: 0px 10px 10px;
 }
 
-.profile-box input, .profile-box input:focus, .profile-box textarea, .profile-box textarea:focus {
+.profile-box input, .profile-box input:focus, .profile-box textarea, .profile-box textarea:focus, .profile-box textarea:focus-visible {
+    display: block;
+    padding: 5px 10px;
     background-color: #D9F0F1;
     border: none;
     border-radius: 20px;
     box-shadow: none;
+    outline: none;
 }
 
 .profile-box .decimal input {
@@ -121,6 +124,10 @@
     display: block;
     margin: auto;
     width: 50px;
+}
+
+.profile-box .error-text {
+    color: red;
 }
 
 /* Info */

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ImageCropper from './ImageCropper';
 import './ModalCustom.css';
@@ -18,7 +18,7 @@ const ModalCustom = (props) => {
     }
     
     const [croppedImage, setCroppedImage] = useState(props.src);
-    if(croppedImage == props.src) {
+    if(croppedImage === props.src) {
         var file =  (croppedImage);
         const reader = new FileReader();
         reader.onload = function() {
@@ -57,6 +57,9 @@ const ModalCustom = (props) => {
                 };
                 dispatch(updateAvatar(props.id, "post", body));
                 toggle();
+                break;
+
+            default:
                 break;
         }
     }

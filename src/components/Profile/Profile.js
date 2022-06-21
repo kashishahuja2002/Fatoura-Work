@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Profile.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import Avatar from '../../assets/images/avatar.jpg'
@@ -7,6 +7,7 @@ import Select from 'react-select';
 import ModalCustom from "../ModalCustom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAvatar } from "./Redux/profileActions";
+import { useForm } from "react-hook-form";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,46 @@ const Profile = () => {
         dispatch(updateAvatar(e.target.id, "put", body));
     };
 
+    const [editProfile, setEditProfile] = useState(false);
+
+    useEffect(() => {
+        reset({
+            firstName: state.user.data ? state.user.data.firstName : 's',
+            lastName: state.user.data ? state.user.data.lastName: '',
+            email: state.user.data ? state.user.data.email: '',
+            phoneNumber: state.user.data ? state.user.data.phoneNumber: ''
+        }, {
+            keepErrors: true, 
+            keepDirty: true,
+            keepIsSubmitted: false,
+            keepTouched: false,
+            keepIsValid: false,
+            keepSubmitCount: false,
+        });
+    }, [JSON.stringify(state.user)])
+
+    const { register, watch, handleSubmit, formState: { errors }, reset } = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange'
+    });
+    watch();
+
+    const onSubmit = (data) => {
+        setEditProfile(false);
+        console.log(data);
+        // dispatch
+    }
+    
+    const handleCancleProfile = () => {
+        reset({
+            firstName: state.user.data.firstName,
+            lastName: state.user.data.lastName,
+            email: state.user.data.email,
+            phoneNumber: state.user.data.phoneNumber
+        }, {});
+        setEditProfile(false);
+    }
+
     return (
         <Container fluid className="profile">
             <div className="profile-box box">
@@ -64,34 +105,43 @@ const Profile = () => {
                         <div className="flex-class">
                             <h5>Personal Information</h5>
                             <div className="edit-btn">
-                                {/* <Button className="blue-button">Edit</Button> */}
-                                <Button className="white-button">Cancel</Button>
-                                <Button className="blue-button">Save</Button>
+                                {!editProfile 
+                                    ? <Button className="blue-button" onClick={() => {setEditProfile(true)}}>Edit</Button>
+                                    : <>
+                                        <Button className="white-button" onClick={handleCancleProfile}>Cancel</Button>
+                                        <Button className="blue-button" onClick={handleSubmit(onSubmit)}>Save</Button>
+                                    </>
+                                }
                             </div>
                         </div>
 
                         <Col xs={12} md={8}>
-                            <div className="profile-input">
-                                <div>
-                                    <Label>First Name</Label>
-                                    <Input type="text" disabled />
+                            <form>
+                                <div className="profile-input">
+                                    <div>
+                                        <Label>First Name</Label>
+                                        <input type="text" disabled={!editProfile} {...register("firstName", {required: "First Name is required", minLength: {value: 3, message: "Enter minimum 3 characters"} })} />
+                                        {errors.firstName && <span className="error-text">{errors.firstName.message}</span>}    
+                                    </div>
+                                    <div>
+                                        <Label>Last Name</Label>
+                                        <input type="text" disabled={!editProfile} {...register("lastName", {required: "Last Name is required", minLength: {value: 3, message: "Enter minimum 3 characters"} })} />
+                                        {errors.lastName && <span className="error-text">{errors.lastName.message}</span>}
+                                    </div>
                                 </div>
-                                <div>
-                                    <Label>Last Name</Label>
-                                    <Input type="text" disabled  />
+                            
+                                <div className="profile-input">
+                                    <div>
+                                        <Label>Email Address</Label>
+                                        <input type="email" disabled value={state.user.data.email} />
+                                    </div>
+                                    <div>
+                                        <Label>Contact Number</Label>
+                                        <input type="text" disabled={!editProfile}  {...register("phoneNumber", {required: "Mobile number is required", maxLength: {value: 10, message: "Mobile number should be of 10 digits"}, minLength: {value: 10, message: "Mobile number should be of 10 digits"} })} />
+                                        {errors.phoneNumber && <span className="error-text">{errors.phoneNumber.message}</span>}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="profile-input">
-                                <div>
-                                    <Label>Email Address</Label>
-                                    <Input type="email" disabled  />
-                                </div>
-                                <div>
-                                    <Label>Contact Number</Label>
-                                    <Input type="tel" disabled  />
-                                </div>
-                            </div>
+                            </form>
 
                             <div className="password">
                                 <h5>Password Settings</h5>
@@ -111,11 +161,11 @@ const Profile = () => {
                             <div className="profile-input">
                                 <div>
                                     <Label>New Password</Label>
-                                    <Input type="password" disabled />
+                                    <Input type="password" />
                                 </div>
                                 <div>
                                     <Label>Confirm Password</Label>
-                                    <Input type="password" disabled  />
+                                    <Input type="password" />
                                 </div>
                             </div>
                         </Col>
