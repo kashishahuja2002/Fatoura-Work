@@ -70,38 +70,30 @@ export const upgradePlan = (url, body) => {
     }
 }
 
-export const updateAvatar = (id, body) => {
+export const updateAvatar = (id, type, body) => {
     var url ='';
-    if(id === "profile-picture")
-        url = "/users/uploadProfile";
-    else if(id === "company-logo")
-        url = "/users/uploadCompanyLogo";
-    return (dispatch) => {
-        http.HttpCall(url, "post", body) 
-            .then((response) => {
-                if(response.data.status === 200) {
-                    dispatch(updateAv(id, body.data));
-                }
-                else 
-                    console.log("Response: ", response);
-            })
-            .catch((error) => {
-                console.log("Error: ",error);
-            })
+    id = id.split('-')[0];
+    if(type === "post") {
+        if(id === "profile")
+            url = "/users/uploadProfile";
+        else if(id === "company")
+            url = "/users/uploadCompanyLogo";
     }
-}
-
-export const removeAvatar = (id, body) => {
-    var url = '';
-    if(id === "profile-picture-remove") 
-        url = "/users/removeImage";
-    else if(id === "company-logo-remove")
-        url = "/users/removeCompanyLogo";
+    else {
+        if(id === "profile")
+            url = "/users/removeImage";
+        else if(id === "company")
+            url = "/users/removeCompanyLogo";
+    }
+    
     return (dispatch) => {
-        http.HttpCall(url, "put", body) 
+        http.HttpCall(url, type, body) 
             .then((response) => {
                 if(response.data.status === 200) {
-                    dispatch(removeAv(id, null));
+                    if(type === "post")
+                        dispatch(avatar(id, body.data));
+                    else
+                        dispatch(avatar(id, null));
                 }
                 else 
                     console.log("Response: ", response);
@@ -140,26 +132,13 @@ const invoiceCount = (data) => {
     };
 }
 
-const updateAv = (id, data) => {
-    if(id === "profile-picture")
+const avatar = (id, data) => {
+    if(id === "profile")
         return {
             type: profileActionsTypes.PROFILE_AVATAR,
             payload: data
         };
-    else if(id === "company-logo")
-        return {
-            type: profileActionsTypes.COMPANY_LOGO,
-            payload: data
-        };
-}
-
-const removeAv = (id, data) => {
-    if(id === "profile-picture-remove")
-        return {
-            type: profileActionsTypes.PROFILE_AVATAR,
-            payload: data
-        };
-    else if(id === "company-logo-remove")
+    else if(id === "company")
         return {
             type: profileActionsTypes.COMPANY_LOGO,
             payload: data

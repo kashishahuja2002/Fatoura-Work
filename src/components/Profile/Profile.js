@@ -6,7 +6,7 @@ import { Input, Label } from "reactstrap";
 import Select from 'react-select';
 import ModalCustom from "../ModalCustom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeAvatar } from "./Redux/profileActions";
+import { updateAvatar } from "./Redux/profileActions";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Profile = () => {
 
     const handleImageRemove = (e) => {
         const body = {"data": "removeMyImage"};
-        dispatch(removeAvatar(e.target.id, body));
+        dispatch(updateAvatar(e.target.id, "put", body));
     };
 
     return (

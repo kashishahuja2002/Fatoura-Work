@@ -55,7 +55,7 @@ const ModalCustom = (props) => {
                 var body = {
                     "data": croppedImage
                 };
-                dispatch(updateAvatar(props.id, body));
+                dispatch(updateAvatar(props.id, "post", body));
                 toggle();
                 break;
         }
