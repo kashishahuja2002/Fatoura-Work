@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ImageCropper from './ImageCropper';
 import './ModalCustom.css';
-
+import { updateAvatar } from './profile/Redux/profileActions';
+import { useDispatch } from 'react-redux';
 
 const ModalCustom = (props) => {
     const [modal, setModal] = useState(props.openModal);
     const [btnValue1, setBtnValue1] = useState("Cancel");
     const [btnValue2, setBtnValue2] = useState(props.btnValue2);
+
+    const dispatch = useDispatch();
     
     const toggle = () => {
         setModal(!modal);
@@ -15,6 +18,19 @@ const ModalCustom = (props) => {
     }
     
     const [croppedImage, setCroppedImage] = useState(props.src);
+    if(croppedImage == props.src) {
+        var file =  (croppedImage);
+        const reader = new FileReader();
+        reader.onload = function() {
+            setCroppedImage(reader.result);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    const handleCropChange = (img) => {
+        setCroppedImage(img)
+    }
     const [showCrop, setShowCrop] = useState(false);
 
     const handleClick = (e) => {
@@ -36,21 +52,36 @@ const ModalCustom = (props) => {
                 break;
 
             case "Save":
-                // dispatch
+                var body = {
+                    "data": croppedImage
+                };
+                dispatch(updateAvatar(props.id, body));
                 toggle();
                 break;
+        }
+    }
 
+    const modalTitle = (id) => {
+        switch(id) {
+            case "profile-picture":
+                return "Update Profile Image";
+
+            case "company-logo":
+                return "Update Company Logo";
+
+            default:
+                return "Update";
         }
     }
 
     return (
         <div>
             <Modal isOpen={modal} fade={false} toggle={toggle} className={props.className} backdrop="static">
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}>{modalTitle(props.id)}</ModalHeader>
                 <ModalBody>
                     {showCrop 
                         ? <img src={croppedImage} alt="Cropped" className="cropped-circular" />
-                        : <ImageCropper src={props.src} setCroppedImage={setCroppedImage} />
+                        : <ImageCropper src={URL.createObjectURL(props.src)} setCroppedImage={handleCropChange} />
                     }
                 </ModalBody>
                 <ModalFooter>

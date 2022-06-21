@@ -70,6 +70,48 @@ export const upgradePlan = (url, body) => {
     }
 }
 
+export const updateAvatar = (id, body) => {
+    var url ='';
+    if(id === "profile-picture")
+        url = "/users/uploadProfile";
+    else if(id === "company-logo")
+        url = "/users/uploadCompanyLogo";
+    return (dispatch) => {
+        http.HttpCall(url, "post", body) 
+            .then((response) => {
+                if(response.data.status === 200) {
+                    dispatch(updateAv(id, body.data));
+                }
+                else 
+                    console.log("Response: ", response);
+            })
+            .catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+}
+
+export const removeAvatar = (id, body) => {
+    var url = '';
+    if(id === "profile-picture-remove") 
+        url = "/users/removeImage";
+    else if(id === "company-logo-remove")
+        url = "/users/removeCompanyLogo";
+    return (dispatch) => {
+        http.HttpCall(url, "put", body) 
+            .then((response) => {
+                if(response.data.status === 200) {
+                    dispatch(removeAv(id, null));
+                }
+                else 
+                    console.log("Response: ", response);
+            })
+            .catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+}
+
 const plans = (data) => {
     return {
         type: profileActionsTypes.PLANS,
@@ -96,4 +138,30 @@ const invoiceCount = (data) => {
         type: profileActionsTypes.INVOICE,
         payload: data
     };
+}
+
+const updateAv = (id, data) => {
+    if(id === "profile-picture")
+        return {
+            type: profileActionsTypes.PROFILE_AVATAR,
+            payload: data
+        };
+    else if(id === "company-logo")
+        return {
+            type: profileActionsTypes.COMPANY_LOGO,
+            payload: data
+        };
+}
+
+const removeAv = (id, data) => {
+    if(id === "profile-picture-remove")
+        return {
+            type: profileActionsTypes.PROFILE_AVATAR,
+            payload: data
+        };
+    else if(id === "company-logo-remove")
+        return {
+            type: profileActionsTypes.COMPANY_LOGO,
+            payload: data
+        };
 }

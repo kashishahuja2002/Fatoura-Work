@@ -2,10 +2,14 @@ const PLANS = 'PLANS';
 const UPGRADE = 'UPGRADE';
 const USER = 'USER';
 const INVOICE = 'INVOICE';
+const PROFILE_AVATAR = 'PROFILE_AVATAR';
+const COMPANY_LOGO = 'COMPANY_LOGO';
 
 export default {
     PLANS,
     UPGRADE,
     USER,
-    INVOICE
+    INVOICE,
+    PROFILE_AVATAR,
+    COMPANY_LOGO
 }

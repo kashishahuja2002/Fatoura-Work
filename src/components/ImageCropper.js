@@ -5,7 +5,6 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
 const Cropper = (props) => {
-    const [imageToCrop, onImageCropped] = useState(props.src);
     const [cropConfig, setCropConfig] = useState(
         // default crop config
         {
@@ -56,16 +55,19 @@ const Cropper = (props) => {
     }
 
     return (
-        <ReactCrop
-            src={imageToCrop}
-            crop={cropConfig}
-            circularCrop={true}
-            ruleOfThirds
-            onImageLoaded={(imageRef) => setImageRef(imageRef)}
-            onComplete={cropImage(cropConfig)}
-            onChange={(cropConfig) => setCropConfig(cropConfig)}
-            crossorigin="anonymous"  // to avoid CORS-related problems
-        />
+        <>
+            <p>Click and drag cursor to crop</p>
+            <ReactCrop
+                src={props.src}
+                crop={cropConfig}
+                circularCrop={true}
+                ruleOfThirds
+                onImageLoaded={(imageRef) => setImageRef(imageRef)}
+                onComplete={cropImage(cropConfig)}
+                onChange={(cropConfig) => setCropConfig(cropConfig)}
+                crossorigin="anonymous"  // to avoid CORS-related problems
+            />
+        </>
     )
 }
 

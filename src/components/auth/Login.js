@@ -23,7 +23,7 @@ const Login = (props) => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if(props.isAuthenticated !== null)
+        if(props.isAuthenticated !== null && props.isAuthenticated)
             navigate('/pages/dashboard');
     }, [props.isAuthenticated, navigate]);
 

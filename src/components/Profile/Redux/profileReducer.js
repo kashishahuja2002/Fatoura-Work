@@ -31,6 +31,22 @@ const profileReducer = (state = initialState, action) => {
                 invoice: action.payload
             };
 
+        case "PROFILE_AVATAR":
+            var userData = {...state.user}
+            userData.data.profileImageName = action.payload;
+            return {
+                ...state, 
+                user: userData
+            };
+
+        case "COMPANY_LOGO":
+            var userData = {...state.user}
+            userData.data.companyDetails.companyLogo = action.payload;
+            return {
+                ...state, 
+                user: userData
+            };
+
         default:
             return state;
     }

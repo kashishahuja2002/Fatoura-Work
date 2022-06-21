@@ -7,13 +7,13 @@ import SidebarCurve from "../assets/images/SidebarCurve.svg";
 import avatar from "../assets/images/avatar.jpg";
 import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-bootstrap';
 import './HomeContainer.css';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './profile/Redux/profileActions';
 
-const HomeContainer = () => {
+const HomeContainer = (props) => {
     const navigate = useNavigate();
-    const pathname = window.location.pathname;
+    const pathname = useLocation().pathname;
     
     const state = useSelector((store) => store);
     const dispatch = useDispatch();
@@ -22,6 +22,12 @@ const HomeContainer = () => {
         dispatch(getUser("/users/getUser"));
     },[]);
     
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        props.setAuthenticated(false)
+        navigate("/auth/login");
+    }
+
     return (
         <>
             <Container fluid>
@@ -78,7 +84,7 @@ const HomeContainer = () => {
                                                 <Dropdown.Item as={Link} to="/profile">My Profile</Dropdown.Item>
                                                 <Dropdown.Item as={Link} to="/profile/subscription">Subscription</Dropdown.Item>
                                                 <Dropdown.Item as={Link} to="/profile/help">Help</Dropdown.Item>
-                                                <Dropdown.Item as={Link} to="/">Logout</Dropdown.Item>
+                                                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>

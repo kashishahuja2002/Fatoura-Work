@@ -7,7 +7,7 @@ export const AuthApi = (url, body, setAuthenticated) => {
             .then((response) => {
                 if(response.data.status === 200) {
                     localStorage.setItem("token", response.data.token);
-                    dispatch(auth(response.data.message));
+                    dispatch(auth(''));
                     setAuthenticated(response.data.token);
                 }
                 else 

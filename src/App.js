@@ -29,7 +29,7 @@ function App() {
                 </Route>
             </Routes>
             <Routes>
-                <Route path="/pages/" element={<HomeContainer />}>
+                <Route path="/pages/" element={<HomeContainer setAuthenticated={setAuthenticated} />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="myInvoices" element={<Documents />} />
                     <Route path="myReports" element={<Reports />} />
@@ -38,7 +38,7 @@ function App() {
                 </Route>
             </Routes>
             <Routes>
-                <Route path="/profile/" element={<HomeContainer />}>
+                <Route path="/profile/" element={<HomeContainer setAuthenticated={setAuthenticated} />}>
                     <Route index element={<Profile />} />
                     <Route path="subscription" element={<Subscription />} />
                     <Route path="help" element={<Help />} />

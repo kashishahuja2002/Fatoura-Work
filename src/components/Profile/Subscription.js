@@ -15,8 +15,6 @@ const Subscription = () => {
         dispatch(getPlans());
     },[])
 
-    console.log("S:",state);
-
     let plans = {};
     if(state.plans.data) {
         plans = state.plans.data.filter(plan => !plan.isHidden);
