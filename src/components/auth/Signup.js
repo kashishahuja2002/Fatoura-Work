@@ -24,7 +24,7 @@ const Signup = (props) => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if(props.isAuthenticated !== null)
+        if(props.isAuthenticated !== null && props.isAuthenticated)
             navigate('/auth/subscribe-plan');
     }, [props.isAuthenticated, navigate]);
 
@@ -54,7 +54,7 @@ const Signup = (props) => {
                     <input type="tel" placeholder="Mobile number" {...register("phoneNumber", {required: "Mobile number is required", pattern: {value: /^\d+$/, message: "Mobile number should only contain digits"}, maxLength: {value: 10, message: "Mobile number should be of 10 digits"}, minLength: {value: 10, message: "Mobile number should be of 10 digits"} })} />
                     {errors.phoneNumber && <span className="error-text">{errors.phoneNumber.message}</span>}
 
-                    <input type="password" placeholder="Password" {...register("password", {required: "Password", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
+                    <input type="password" placeholder="Password" {...register("password", {required: "Password is required", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
                     {errors.password && <span className="error-text">{errors.password.message}</span>}
 
                     <input type="text" placeholder="Referal Code" {...register("referallCode", {minLength: {value: 3, message: "Referal code should be of minimum 3 characters"} })} />
