@@ -25,7 +25,7 @@ export const subscribePlan = (url, body) => {
             .then((response) => {
                 if(response.data.status === 200) {
                     console.log("First time login: ",response.data);
-                    dispatch(auth(response.data.message));
+                    dispatch(auth(''));
                 }
                 else 
                     console.log("Response: ",response);
