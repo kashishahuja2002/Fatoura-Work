@@ -15,8 +15,6 @@ const InfoModal = (props) => {
         props.closeInfoModal(false);
     }
 
-    var content ='';
-
     var body = <>
             <div>Follow to these step to get the necessary data to fill the form and integrate to our servers.</div> <br />
             <ul>
