@@ -2,7 +2,9 @@ const initialState = {
     plans: {},
     upgrade: {},
     user: {},
-    invoice: null
+    invoice: null,
+    passwordFailMessage: '',
+    apiSuccess: false
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -51,6 +53,17 @@ const profileReducer = (state = initialState, action) => {
                 user: userData
             };
 
+        case "UPDATE_PASSWORD":
+            var userData = {...state.user}
+            userData.data.hash = action.payload.data;
+            var msg = action.payload.message;
+            return {
+                ...state, 
+                user: userData,
+                passwordFailMessage: msg,
+
+            };
+
         case "COMPANY_LOGO":
             var userData = {...state.user}
             userData.data.companyDetails.companyLogo = action.payload;
@@ -71,6 +84,13 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 user: userData
+            };
+
+        case "API_SUCCESS":
+            var success = action.paylod;
+            return {
+                ...state, 
+                apiSuccess: success
             };
 
         default:

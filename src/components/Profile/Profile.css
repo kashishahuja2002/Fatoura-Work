@@ -58,12 +58,17 @@
     border-radius: 20px;
     box-shadow: none;
     outline: none;
+    width: 100%;
+}
+
+.profile-box .decimal div {
+    margin: 0;
 }
 
 .profile-box .decimal input {
     display: inline;
-    padding: 0px 10px;
-    margin: 5px;
+    padding: 0px 11px;
+    margin-right: 5px;
     background-color: #fff;
     border: 1px solid #aaa;
 }
@@ -91,9 +96,6 @@
 }
 
 /* Company */
-.profile-box .company-input input {
-    width: 100%;
-}
 
 .profile-box .search-select.flex-class {
     justify-content: flex-start;
@@ -149,6 +151,13 @@
     font-weight: 400;
 }
 
+@media screen and (max-width: 810px) {
+    .profile-box .password.profile-input {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 @media screen and (max-width: 576px) {
     .company-input .avatar {
         flex-direction: column !important;
@@ -191,6 +200,10 @@
 @media screen and (max-width: 360px) {
     .profile-box .white-box {
         padding: 20px 0;
+    }
+
+    .profile-box .decimal {
+        flex-direction: column;
     }
 }
 

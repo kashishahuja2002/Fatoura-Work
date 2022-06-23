@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import './Profile.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import Avatar from '../../assets/images/avatar.jpg'
@@ -6,20 +6,19 @@ import { Input, Label } from "reactstrap";
 import Select from 'react-select';
 import ModalCustom from "../ModalCustom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAvatar, updateCompany, updateUser } from "./Redux/profileActions";
+import { updateAvatar, updateCompany, updateUser, updatePassword } from "./Redux/profileActions";
 import { useForm } from "react-hook-form";
 
 const Profile = () => {
     const dispatch = useDispatch();
+    const state = useSelector((store) => store.profile); 
+    // console.log(state);
 
     const options = [
         { value: 'AED', label: 'AED' },
         { value: 'AFN', label: 'AFN' },
         { value: 'AMD', label: 'AMD' }
     ];
-
-    const state = useSelector((store) => store.profile); 
-    // console.log(state);
 
     // Modal
     const [openModal, setOpenModal] = useState(false);
@@ -43,6 +42,7 @@ const Profile = () => {
         dispatch(updateAvatar(e.target.id, "put", body));
     };
 
+    // React hook form
     useEffect(() => {
         reset({
             firstName: state.user.data ? state.user.data.firstName : '',
@@ -80,7 +80,6 @@ const Profile = () => {
 
     // User Profile
     const [editProfile, setEditProfile] = useState(false);
-
     const { register, watch, handleSubmit, formState: { errors }, reset } = useForm({
         mode: 'onChange',
         reValidateMode: 'onChange'
@@ -108,9 +107,48 @@ const Profile = () => {
         setEditProfile(false);
     }
 
+    // Password
+    const [editPassword, setEditPassword] = useState(false);
+    const [showPasswordFailMessage, setShowPasswordFailMessage] = useState(true);
+    const { register: registerPassword, watch: watchPassword, handleSubmit: handleSubmitPassword, formState: { errors: errorsPassword }, reset: resetPassword } = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange'
+    });
+    watchPassword();
+    let validatePassword = watchPassword('newPassword');
+
+    const onSubmitPassword = (data) => {
+        setShowPasswordFailMessage(true);
+        var body = {
+            "oldPassword": data.oldPassword,
+            "newPassword": data.newPassword,
+            "password": data.password,
+            _id: state.user.data._id
+        }
+        dispatch(updatePassword("/users/changePassword", body))
+        if(state.apiSuccess) {
+            setShowPasswordFailMessage(false);
+            setEditPassword(false);
+            resetPassword({
+                oldPassword: '',
+                newPassword: '',
+                password: ''
+            }, {});
+        }
+    }
+    
+    const handleCanclePassword = () => {
+        setShowPasswordFailMessage(false);
+        resetPassword({
+            oldPassword: '',
+            newPassword: '',
+            password: ''
+        }, {});
+        setEditPassword(false);
+    }
+
     // Company
     const [editCompany, setEditCompany] = useState(false);
-
     const { register: registerCompany, watch: watchCompany, handleSubmit: handleSubmitCompany, formState: { errors: errorsCompany }, reset: resetCompany } = useForm({
         mode: 'onChange',
         reValidateMode: 'onChange'
@@ -217,32 +255,45 @@ const Profile = () => {
                                 <div className="password d-flex flex-row">
                                     <h5>Password Settings</h5>
                                     <div>
-                                        <Button className="blue-button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={10} viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
-                                        </Button>
-                                        <Button className="blue-button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                                        </Button>
-                                        <Button className="white-button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                        </Button>
+                                        {!editPassword 
+                                            ?<Button className="blue-button" onClick={() => setEditPassword(true)}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width={10} viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+                                            </Button>
+                                            : <>
+                                                <Button className="blue-button" onClick={handleSubmitPassword(onSubmitPassword)} >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                                </Button>
+                                                <Button className="white-button" onClick={handleCanclePassword}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                </Button>
+                                            </>
+                                        }
                                     </div>
                                 </div>
 
-                                <div className="profile-input">
-                                    <div>
-                                        <Label>Current Password</Label>
-                                        <input type="password" />
-                                    </div>
-                                    <div>
-                                        <Label>New Password</Label>
-                                        <input type="password" />
-                                    </div>
-                                    <div>
-                                        <Label>Confirm Password</Label>
-                                        <input type="password" />
-                                    </div>
-                                </div>
+                                {showPasswordFailMessage && <span className="error-text">{state.passwordFailMessage}</span> }
+
+                                {editPassword && 
+                                    <form>
+                                        <div className="password profile-input">
+                                            <div>
+                                                <Label>Current Password</Label>
+                                                <input type="password" {...registerPassword("oldPassword", {required: "Password is required", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
+                                                {errorsPassword.oldPassword && <span className="error-text">{errorsPassword.oldPassword.message}</span>}
+                                            </div>
+                                            <div>
+                                                <Label>New Password</Label>
+                                                <input type="password" {...registerPassword("newPassword", {required: "Password is required", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
+                                                {errorsPassword.newPassword && <span className="error-text">{errorsPassword.newPassword.message}</span>}
+                                            </div>
+                                            <div>
+                                                <Label>Confirm Password</Label>
+                                                <input type="password" {...registerPassword("password", {required: "Password is required", validate: (value) => value === validatePassword || "Password does not match"} )} />
+                                                {errorsPassword.password && <span className="error-text">{errorsPassword.password.message}</span>}
+                                            </div>
+                                        </div>
+                                    </form>
+                                }
                             </Col>
                         </Row>
                     

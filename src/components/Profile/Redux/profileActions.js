@@ -108,7 +108,29 @@ export const updateUser = (url, body) => {
     return (dispatch) => {
         http.HttpCall(url, "put", body)
             .then((response) => {
-                dispatch(updateUserData(response.data));
+                if(response.data.status === 200) {
+                    dispatch(updateUserData(response.data));
+                }
+                else 
+                    console.log("Response: ", response);
+            }) 
+            .catch((error) => {
+                console.log("Error: ", error);
+            })
+    }
+}
+
+export const updatePassword = (url, body) => {
+    return (dispatch) => {
+        http.HttpCall(url, "put", body)
+            .then((response) => {
+                if(response.data.status === 200) {
+                    console.log(response.data);
+                    dispatch(updatePasswordData(body.newPassword, response.data.message));
+                    dispatch(apiSuccess(true));
+                }
+                else 
+                    dispatch(updatePasswordData(body.oldPassword, response.data.message));
             }) 
             .catch((error) => {
                 console.log("Error: ", error);
@@ -120,7 +142,11 @@ export const updateCompany = (url, body) => {
     return (dispatch) => {
         http.HttpCall(url, "put", body)
             .then((response) => {
-                dispatch(updateCompanyData(response.data));
+                if(response.data.status === 200) {
+                    dispatch(updateCompanyData(response.data));
+                }
+                else 
+                    console.log("Response: ", response);
             }) 
             .catch((error) => {
                 console.log("Error: ", error);
@@ -180,9 +206,26 @@ const updateUserData = (data) => {
     };
 }
 
+const updatePasswordData = (data, msg) => {
+    return {
+        type: profileActionsTypes.UPDATE_PASSWORD,
+        payload: {
+            body: data,
+            message: msg
+        }
+    };
+}
+
 const updateCompanyData = (data) => {
     return {
         type: profileActionsTypes.UPDATE_COMPANY,
+        payload: data
+    };
+}
+
+const apiSuccess = (data) => {
+    return {
+        type: profileActionsTypes.API_SUCCESS,
         payload: data
     };
 }
