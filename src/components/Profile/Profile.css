@@ -149,6 +149,7 @@
     color: #0d6efd !important;
     text-decoration: underline !important;
     font-weight: 400;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 810px) {

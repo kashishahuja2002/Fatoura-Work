@@ -8,6 +8,7 @@ import ModalCustom from "../ModalCustom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAvatar, updateCompany, updateUser, updatePassword } from "./Redux/profileActions";
 import { useForm } from "react-hook-form";
+import InfoModal from "../InfoModal";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -188,6 +189,17 @@ const Profile = () => {
         }, {});
         setEditCompany(false);
     }
+
+    // Paypal Info
+    const [openInfoModal, setOpenInfoModal] = useState(false);
+    const handlePaypalInfo = () => {
+        setOpenInfoModal(true);
+    }
+
+    const closeInfoModal = () => {
+        setOpenInfoModal(false);
+    }
+
 
     return (
         <Container fluid className="profile">
@@ -409,13 +421,15 @@ const Profile = () => {
                 <Row className="white-box mb-0">
                     <div className="info">
                         <h5>PayPal Payment Settings</h5>  
-                        <a>How to?</a>
+                        <a id="paypalInfo" onClick={handlePaypalInfo}>How to?</a>
                     </div>
                     <p>This is a Pro feature. Upgrade your account to configure these settings</p>
                 </Row>
             </div>
 
             {openModal && <ModalCustom openModal={openModal} modalClosed={modalClosed} src={modalSrc} id={modalId} btnValue2="Preview" />}
+
+            {openInfoModal && <InfoModal openInfoModal={openInfoModal} closeInfoModal={closeInfoModal} title="Paypal setup instructions"  btnValue2="Close" />}
         </Container>
     );
 }
