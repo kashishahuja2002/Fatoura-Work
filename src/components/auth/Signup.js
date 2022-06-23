@@ -51,7 +51,7 @@ const Signup = (props) => {
                     <input type="email" placeholder="Email" {...register("email", {required: "Email is required", pattern: {value: /^\S+@\S+$/i, message: "Email address is invalid"} })} />
                     {errors.email && <span className="error-text">{errors.email.message}</span>}
 
-                    <input type="text" placeholder="Mobile number" {...register("phoneNumber", {required: "Mobile number is required", maxLength: {value: 10, message: "Mobile number should be of 10 digits"}, minLength: {value: 10, message: "Mobile number should be of 10 digits"} })} />
+                    <input type="tel" placeholder="Mobile number" {...register("phoneNumber", {required: "Mobile number is required", pattern: {value: /^\d+$/, message: "Mobile number should only contain digits"}, maxLength: {value: 10, message: "Mobile number should be of 10 digits"}, minLength: {value: 10, message: "Mobile number should be of 10 digits"} })} />
                     {errors.phoneNumber && <span className="error-text">{errors.phoneNumber.message}</span>}
 
                     <input type="password" placeholder="Password" {...register("password", {required: "Password", minLength: {value: 8, message: "Password should be of minimum 8 characters"} })} />
