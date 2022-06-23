@@ -8,6 +8,7 @@
 
 .profile-box .white-box {
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 .profile-box label {
@@ -60,6 +61,8 @@
 }
 
 .profile-box .decimal input {
+    display: inline;
+    padding: 0px 10px;
     margin: 5px;
     background-color: #fff;
     border: 1px solid #aaa;
@@ -88,6 +91,10 @@
 }
 
 /* Company */
+.profile-box .company-input input {
+    width: 100%;
+}
+
 .profile-box .search-select.flex-class {
     justify-content: flex-start;
 }

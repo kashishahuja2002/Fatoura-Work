@@ -104,6 +104,34 @@ export const updateAvatar = (id, type, body) => {
     }
 }
 
+export const updateUser = (url, body) => {
+    return (dispatch) => {
+        http.HttpCall(url, "put", body)
+            .then((response) => {
+                dispatch(updateUserData(response.data));
+            }) 
+            .catch((error) => {
+                console.log("Error: ", error);
+            })
+    }
+}
+
+export const updateCompany = (url, body) => {
+    return (dispatch) => {
+        http.HttpCall(url, "put", body)
+            .then((response) => {
+                dispatch(updateCompanyData(response.data));
+            }) 
+            .catch((error) => {
+                console.log("Error: ", error);
+            })
+    }
+}
+
+
+
+
+
 const plans = (data) => {
     return {
         type: profileActionsTypes.PLANS,
@@ -143,4 +171,18 @@ const avatar = (id, data) => {
             type: profileActionsTypes.COMPANY_LOGO,
             payload: data
         };
+}
+
+const updateUserData = (data) => {
+    return {
+        type: profileActionsTypes.UPDATE_USER,
+        payload: data
+    };
+}
+
+const updateCompanyData = (data) => {
+    return {
+        type: profileActionsTypes.UPDATE_COMPANY,
+        payload: data
+    };
 }
