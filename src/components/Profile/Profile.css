@@ -38,7 +38,7 @@
     padding: .375rem .75rem !important;
 }
 
-.form-control:disabled {
+.profile-box .form-control:disabled {
     background-color: #D9F0F1 !important;
 }
 

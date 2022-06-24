@@ -14,7 +14,6 @@ import '../SlimSelect.css';
 const Profile = () => {
     const dispatch = useDispatch();
     const state = useSelector((store) => store.profile); 
-    // console.log(state);
 
     // Modal
     const [openModal, setOpenModal] = useState(false);
