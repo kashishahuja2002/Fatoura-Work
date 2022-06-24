@@ -1,0 +1,5 @@
+const GENERATE_NUMBER = 'GENERATE_NUMBER';
+
+export default {
+    GENERATE_NUMBER
+};
