@@ -1,25 +1,20 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import './Profile.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import Avatar from '../../assets/images/avatar.jpg'
-import { Input, Label } from "reactstrap";
-import Select from 'react-select';
+import { Label } from "reactstrap";
 import ModalCustom from "../ModalCustom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAvatar, updateCompany, updateUser, updatePassword } from "./Redux/profileActions";
 import { useForm } from "react-hook-form";
 import InfoModal from "../InfoModal";
+import SlimSelect from 'slim-select';
+import '../SlimSelect.css';
 
 const Profile = () => {
     const dispatch = useDispatch();
     const state = useSelector((store) => store.profile); 
     // console.log(state);
-
-    const options = [
-        { value: 'AED', label: 'AED' },
-        { value: 'AFN', label: 'AFN' },
-        { value: 'AMD', label: 'AMD' }
-    ];
 
     // Modal
     const [openModal, setOpenModal] = useState(false);
@@ -77,6 +72,16 @@ const Profile = () => {
             keepIsValid: false,
             keepSubmitCount: false,
         });
+
+        setQrCode(state.user.data ? state.user.data.companyDetails.qrCode : '');
+        setESign(state.user.data ? state.user.data.companyDetails.eSign : '');
+
+        document.querySelectorAll(`select:not([data-ssid])`).forEach(e => { new SlimSelect({ 
+            select: '#single'
+        }) });
+
+        setRadioValue(state.user.data ? state.user.data.companyDetails.decimalSize : null);
+
     }, [JSON.stringify(state.user)])
 
     // User Profile
@@ -89,7 +94,6 @@ const Profile = () => {
 
     const onSubmit = (data) => {
         setEditProfile(false);
-        console.log(data);
         var body = {
             "firstName": data.firstName,
             "lastName": data.lastName,
@@ -150,6 +154,10 @@ const Profile = () => {
 
     // Company
     const [editCompany, setEditCompany] = useState(false);
+    const [qrCode, setQrCode] = useState('');
+    const [eSign, setESign] = useState('');
+    const [radioValue, setRadioValue] = useState(state.user.data ? state.user.data.companyDetails.decimalSize : null);
+
     const { register: registerCompany, watch: watchCompany, handleSubmit: handleSubmitCompany, formState: { errors: errorsCompany }, reset: resetCompany } = useForm({
         mode: 'onChange',
         reValidateMode: 'onChange'
@@ -164,8 +172,8 @@ const Profile = () => {
             companyAddress: data.companyAddress,
             decimalSize: data.decimalSize,
             qrHeading: data.qrHeading,
-            eSign: data.eSign,
-            qrCode: data.qrCode
+            eSign: eSign,
+            qrCode: qrCode
         }
         var bodyUser = {
             taxNumber: data.taxNumber,
@@ -187,7 +195,17 @@ const Profile = () => {
             eSign: state.user.data ? state.user.data.companyDetails.eSign : '',
             qrCode: state.user.data ? state.user.data.companyDetails.qrCode : ''
         }, {});
+        setRadioValue(state.user.data.companyDetails.decimalSize);
+        setQrCode(state.user.data.companyDetails.qrCode);
+        setESign(state.user.data.companyDetails.eSign);
         setEditCompany(false);
+    }
+
+    const handleRemoveCompanyImage = (e) => {
+        if(e.target.id === "qr-code-remove")
+            setQrCode('');
+        else if(e.target.id === "e-sign-remove")
+            setESign('');
     }
 
     // Paypal Info
@@ -360,19 +378,24 @@ const Profile = () => {
                                             <Label>Tax Number</Label>
                                             <input disabled={!editCompany} type="text" {...registerCompany("taxNumber")} />
                                         </div>
-                                        <div className="search-select">
+                                        <div className={editCompany? "search-select" : "search-select disable-select"}>
                                             <Label>Currency Selection</Label>
-                                            <Select disabled={!editCompany} options={options} placeholder="Select Value" {...registerCompany("currencyType")} />
+                                            <select id="single" {...registerCompany("currencyType")} >
+                                                <option data-placeholder="true">{state.user.data ? state.user.data.currencyType : 'Select Value'}</option>
+                                                <option value="value 2">Value 2</option>
+                                                <option value="value 3">Value 3</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <p>Decimal Settings</p>
                                     <div className="decimal d-flex">
+                                        <div>{radioValue}</div>
                                         <div>
-                                            <Input disabled={!editCompany} type="radio" id="2d" name="decimal" value="2d" {...registerCompany("decimalSize")} />
+                                            <input disabled={!editCompany} type="radio" id="2d" value={2} {...registerCompany("decimalSize")} checked={radioValue==2} onChange={() => {setRadioValue(2)}} />
                                             <Label for="2d">2 Decimals</Label>
                                         </div>
                                         <div>
-                                            <Input disabled={!editCompany} type="radio" id="3d" name="decimal" value="3d" {...registerCompany("decimalSize")} />
+                                            <input disabled={!editCompany} type="radio" id="3d" value={3} {...registerCompany("decimalSize")} checked={radioValue==3} onChange={() => {setRadioValue(3)}} />
                                             <Label for="3d">3 Decimals</Label>
                                         </div>
                                     </div>
@@ -388,29 +411,47 @@ const Profile = () => {
                                     </div>
                                     <div className="avatar">
                                         <div className="qr">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-20 w-20"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                                            {(qrCode != null && qrCode != '')
+                                                ? <img src={qrCode} alt="QR Code" />
+                                                : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-20 w-20"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                                            }
                                         </div>
                                     
-                                        <input type="file" hidden id="qrCode" disabled={!editCompany} {...registerCompany("qrCode")} />
-                                        <div>
-                                            {/* <Label for="qrCode" className="blue-button m-3">Add Image</Label> */}
-                                            <Label for="qrCode" className="blue-button">Change</Label>
-                                            <Button className="white-button">Remove</Button>
-                                        </div>
+                                        <input type="file" hidden id="qr-code" disabled={!editCompany} {...registerCompany("qrCode")} onChange={handleImageChange} />
+                                        {editCompany && 
+                                            <div>
+                                                {!(qrCode != null && qrCode != '')
+                                                    ? <Label for="qr-code" className="blue-button m-3">Add Image</Label>
+                                                    : <>
+                                                        <Label for="qr-code" className="blue-button">Change</Label>
+                                                        <Button className="white-button" id="qr-code-remove" onClick={handleRemoveCompanyImage}>Remove</Button>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
                                     </div>
 
                                     <h5>E-Sign Settings</h5>
                                     <div className="avatar">
                                         <div className="e-sign">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-20 w-20"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            {(eSign != null && eSign != '') 
+                                                ? <img src={eSign} alt="E Sign" />
+                                                : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-20 w-20"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            }
                                         </div>
                                     
-                                        <input type="file" hidden id="eSign" disabled={!editCompany} {...registerCompany("eSign")} />
-                                        <div>
-                                            {/* <Label for="eSign" className="blue-button m-3">Add Image</Label> */}
-                                            <Label for="eSign" className="blue-button">Change</Label>
-                                            <Button className="white-button">Remove</Button>
-                                        </div>
+                                        <input type="file" hidden id="e-sign" disabled={!editCompany} {...registerCompany("eSign")} onChange={handleImageChange} />
+                                        {editCompany && 
+                                            <div>
+                                                {!(eSign != null && eSign != '') 
+                                                    ? <Label for="e-sign" className="blue-button m-3">Add Image</Label>
+                                                    : <>
+                                                        <Label for="e-sign" className="blue-button">Change</Label>
+                                                        <Button className="white-button" id="e-sign-remove" onClick={handleRemoveCompanyImage}>Remove</Button>
+                                                    </>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </form>
                             </Col>
@@ -427,9 +468,9 @@ const Profile = () => {
                 </Row>
             </div>
 
-            {openModal && <ModalCustom openModal={openModal} modalClosed={modalClosed} src={modalSrc} id={modalId} btnValue2="Preview" />}
+            {openModal && <ModalCustom openModal={openModal} modalClosed={modalClosed} src={modalSrc} id={modalId} btnValue2="Preview" setQrCode={setQrCode} setESign={setESign} />}
 
-            {openInfoModal && <InfoModal openInfoModal={openInfoModal} closeInfoModal={closeInfoModal} title="Paypal setup instructions"  btnValue2="Close" />}
+            {openInfoModal && <InfoModal openInfoModal={openInfoModal} closeInfoModal={closeInfoModal} title="Paypal setup instructions" btnValue2="Close" />}
         </Container>
     );
 }

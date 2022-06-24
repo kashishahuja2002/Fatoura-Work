@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import ImageCropper from './ImageCropper';
 import './ModalCustom.css';
-import { updateAvatar } from './profile/Redux/profileActions';
-import { useDispatch } from 'react-redux';
 
 const InfoModal = (props) => {
     const [infoModal, setInfoModal] = useState(props.openInfoModal);

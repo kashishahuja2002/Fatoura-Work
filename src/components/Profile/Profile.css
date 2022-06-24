@@ -66,8 +66,10 @@
 }
 
 .profile-box .decimal input {
-    display: inline;
-    padding: 0px 11px;
+    transform: scale(1.5);
+    display: inline-block;
+    width: auto;
+    height: 0.7rem;
     margin-right: 5px;
     background-color: #fff;
     border: 1px solid #aaa;
@@ -97,23 +99,38 @@
 
 /* Company */
 
-.profile-box .search-select.flex-class {
-    justify-content: flex-start;
+.profile-box .company-input .disable-select {
+    pointer-events: none;
 }
 
-.profile-box .search-select .css-1s2u09g-control, .profile-box .search-select .css-1pahdxg-control, .profile-box .search-select .css-1pahdxg-control:focus, .profile-box .search-select .css-1pahdxg-control:hover {
+.profile-box .company-input .search-select .ss-single-selected {
     background-color: #D9F0F1;
-    border-radius: 10px !important;
-    outline: none !important;
-    border: none !important;
-    border-style: none !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    width: 165px !important;
+    height: 34px;
+    border-radius: 20px;
+    margin: 0;
 }
 
-.css-b62m3t-container, .css-b62m3t-container:focus, .css-1s2u09g-control, .css-1s2u09g-control:focus, .css-319lph-ValueContainer, .css-319lph-ValueContainer:focus, .css-1hb7zxy-IndicatorsContainer, .css-1hb7zxy-IndicatorsContainer:focus, .css-tlfecz-indicatorContainer, .css-tlfecz-indicatorContainer:focus, .css-6j8wv5-Input, .css-6j8wv5-Input:focus, .css-14el2xx-placeholder, .css-14el2xx-placeholder:focus, .css-tlfecz-indicatorContainer, .css-tlfecz-indicatorContainer:focus, .css-1gtu0nj-indicatorContainer {
-    margin: 0 !important;
+.profile-box .company-input .search-select .ss-single-selected .placeholder {
+    background-color: #D9F0F1;
+    color: #000;
+    opacity: 1;
+}
+
+.profile-box .company-input .search-select .ss-main .ss-single-selected .placeholder .ss-disabled {
+    color: #aaa;
+}
+
+.profile-box .company-input .search-select .ss-content {
+    margin: 1px 0px;
+}
+
+.profile-box .company-input .search-select .ss-content .ss-search input:focus {
+    box-shadow: none;
+}
+
+.profile-box .company-input .search-select .ss-content .ss-list .ss-option:hover {
+    color: #000;
+    background-color: #D9F0F1;
 }
 
 .avatar .qr, .avatar .e-sign {
@@ -123,16 +140,21 @@
     display: flex;
     align-items: center;
     margin: 0 !important;
+    padding: 10px;
 }
 
 .avatar .e-sign {
     min-width: 210px;
 }
 
-.avatar .qr svg, .avatar .e-sign svg {
+.avatar .qr svg, .avatar .qr img, .avatar .e-sign svg, .avatar .e-sign img {
     display: block;
     margin: auto;
     width: 50px;
+}
+
+.avatar .qr img, .avatar .e-sign img {
+    width: 100%;
 }
 
 .profile-box .error-text {

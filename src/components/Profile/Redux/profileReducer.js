@@ -8,6 +8,7 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
+    var userData = {};
     switch(action.type) {
         case "PLANS":
             return {
@@ -34,7 +35,7 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case "PROFILE_AVATAR":
-            var userData = {...state.user}
+            userData = {...state.user}
             userData.data.profileImageName = action.payload;
             return {
                 ...state, 
@@ -42,7 +43,7 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case "UPDATE_USER":
-            var userData = {...state.user}
+            userData = {...state.user}
             userData.data.firstName = action.payload.data.firstName;
             userData.data.lastName = action.payload.data.lastName;
             userData.data.phoneNumber = action.payload.data.phoneNumber;
@@ -54,7 +55,7 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case "UPDATE_PASSWORD":
-            var userData = {...state.user}
+            userData = {...state.user}
             userData.data.hash = action.payload.data;
             var msg = action.payload.message;
             return {
@@ -65,7 +66,7 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case "COMPANY_LOGO":
-            var userData = {...state.user}
+            userData = {...state.user}
             userData.data.companyDetails.companyLogo = action.payload;
             return {
                 ...state, 
@@ -73,7 +74,7 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case "UPDATE_COMPANY":
-            var userData = {...state.user}
+            userData = {...state.user}
             userData.data.companyDetails.companyName = action.payload.data.companyDetails.companyName;
             userData.data.companyDetails.entityID = action.payload.data.companyDetails.entityID;
             userData.data.companyDetails.companyAddress = action.payload.data.companyDetails.companyAddress;

@@ -60,7 +60,7 @@ const Cropper = (props) => {
             <ReactCrop
                 src={props.src}
                 crop={cropConfig}
-                circularCrop={true}
+                circularCrop={props.circleCrop}
                 ruleOfThirds
                 onImageLoaded={(imageRef) => setImageRef(imageRef)}
                 onComplete={cropImage(cropConfig)}

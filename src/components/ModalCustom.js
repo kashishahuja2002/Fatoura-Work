@@ -16,7 +16,9 @@ const ModalCustom = (props) => {
         setModal(!modal);
         props.modalClosed();
     }
-    
+
+    const circleCrop = (props.id == "profile-picture" || props.id == "company-logo") ? true : false;
+
     const [croppedImage, setCroppedImage] = useState(props.src);
     if(croppedImage === props.src) {
         var file =  (croppedImage);
@@ -52,10 +54,18 @@ const ModalCustom = (props) => {
                 break;
 
             case "Save":
-                var body = {
-                    "data": croppedImage
-                };
-                dispatch(updateAvatar(props.id, "post", body));
+                if(props.id == "profile-picture" || props.id == "company-logo") {
+                    var body = {
+                        "data": croppedImage
+                    };
+                    dispatch(updateAvatar(props.id, "post", body));
+                }
+                else if(props.id == "qr-code") {
+                    props.setQrCode(croppedImage);
+                }
+                else if(props.id == "e-sign") {
+                    props.setESign(croppedImage);
+                }
                 toggle();
                 break;
 
@@ -72,6 +82,12 @@ const ModalCustom = (props) => {
             case "company-logo":
                 return "Update Company Logo";
 
+            case "qr-code":
+                return "Add QR Code";
+
+            case "e-sign":
+                return "E-Sign Settings";
+
             default:
                 return "Update";
         }
@@ -84,7 +100,7 @@ const ModalCustom = (props) => {
                 <ModalBody>
                     {showCrop 
                         ? <img src={croppedImage} alt="Cropped" className="cropped-circular" />
-                        : <ImageCropper src={URL.createObjectURL(props.src)} setCroppedImage={handleCropChange} />
+                        : <ImageCropper src={URL.createObjectURL(props.src)} setCroppedImage={handleCropChange} circleCrop={circleCrop} />
                     }
                 </ModalBody>
                 <ModalFooter>

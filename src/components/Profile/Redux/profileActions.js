@@ -154,7 +154,28 @@ export const updateCompany = (url, body) => {
     }
 }
 
-
+export const updateCompanyImage = (type, body) => {
+    var url ='/users/uploadCompanyLogo';
+    
+    return (dispatch) => {
+        http.HttpCall(url, type, body) 
+            .then((response) => {
+                if(response.data.status === 200) {
+                    if(type === "post")
+                        console.log(response.data);
+                        // dispatch(avatar(id, body.data));
+                    else
+                        console.log(response.data);
+                        // dispatch(avatar(id, null));
+                }
+                else 
+                    console.log("Response: ", response);
+            })
+            .catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+}
 
 
 

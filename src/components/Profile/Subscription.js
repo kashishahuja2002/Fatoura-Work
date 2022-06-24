@@ -35,7 +35,7 @@ const Subscription = () => {
     let invoiceBalance = 0;
     if(state.user.data && state.plans.data) {
         subId = state.user.data.subscription.subscriptionId;
-        userPlan = state.plans.data.filter(plan => plan._id == subId);
+        userPlan = state.plans.data.filter(plan => plan._id === subId);
         let date = new Date(state.user.data.subscription.expiryDate);
         expDate = date.toLocaleString('default', { month: 'long' }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
         if(state.invoice && Object.keys(state.invoice).length !== 0)
