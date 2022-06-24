@@ -1,28 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input, Container, Col, Row, Label, Table} from "reactstrap";
 import '../InvoiceTable.css';
 import './CreateEdit.css';
-
 import Select from 'react-select';
 import ModalCustom from "../ModalCustom";
 import { useSearchParams } from "react-router-dom";
+import { generateNumber } from "./Redux/createEditActions";
+import { useDispatch, useSelector } from "react-redux";
+import SlimSelect from 'slim-select';
+import '../SlimSelect.css';
 
 const CreateEdit = () => {
+    const dispatch = useDispatch();
+    const state = useSelector((store) => store.pages);
+
     const [searchParams] = useSearchParams();
     const task = searchParams.get('task');
     const type = searchParams.get('type');
+
+    useEffect(() => {
+        document.querySelectorAll(`select:not([data-ssid])`).forEach(e => { new SlimSelect({ 
+            select: '#single'
+        }) });
+    });
+
+    useEffect(() => {
+        const year = new Date().getFullYear();
+        var body = {
+            "from": new Date(year+1, 0,1).toISOString().slice(0,10),
+            "to": new Date(year+1, 12,31).toISOString().slice(0,10),
+            "type": type,
+            "year": year
+        };
+        dispatch(generateNumber(body));
+    }, [type])
 
     const [openModal, setOpenModal] = useState(false);
 
     const modalClosed = () => {
         setOpenModal(false);
     }
-
-    const options = [
-        { value: 'AED', label: 'AED' },
-        { value: 'AFN', label: 'AFN' },
-        { value: 'AMD', label: 'AMD' }
-    ];
 
     const imageUpload = (e) => {
         setOpenModal(true);
@@ -48,11 +65,11 @@ const CreateEdit = () => {
                         <Col xs={12} sm={8} className="bdr-btm mb15">
                             <div className="mb15">
                                 <Label>{type} Number</Label>
-                                <Input type="text" />
+                                <Input type="text" defaultValue={state.documentNumber} disabled />
                             </div>
                             <div className="mb15">
                                 <Label>{type} Date</Label>
-                                <Input type="date" />
+                                <Input type="date" defaultValue={new Date().toISOString().slice(0,10)} />
                             </div>
                             <div className="mb15">
                                 <Label>Due Date</Label>
@@ -229,7 +246,11 @@ const CreateEdit = () => {
                         <Row>
                             <Col xs={12} md={6} className="search-select flex-class">
                                 <Label>Currency:</Label>
-                                <Select options={options} placeholder="Select Value" />
+                                <select id="single" >
+                                    <option data-placeholder="true">Select Value</option>
+                                    <option value="value 2">Value 2</option>
+                                    <option value="value 3">Value 3</option>
+                                </select>
                             </Col>
                             <Col xs={12} md={6} className="total-table">
                                 <div className="flex-class">

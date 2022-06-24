@@ -43,6 +43,12 @@
     font-weight: bold;
 }
 
+.ce-box .ce-body .form-control:disabled, .ce-box .ce-body .form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
 .ce-body input, .ce-body input:focus, .ce-body textarea, .ce-body textarea:focus {
     border-radius: 10px;
     outline: none;
@@ -160,17 +166,30 @@
 }
 
 /* Select */
-.ce-body .search-select.flex-class {
-    justify-content: flex-start;
+.ce-body .search-select .ss-single-selected, .ss-main .ss-single-selected.ss-open-below, .ss-main .ss-single-selected.ss-open-above {
+    height: 34px;
+    width: 50%;
+    border-radius: 20px;
 }
 
-.ce-body .search-select .css-1s2u09g-control, .ce-body .search-select .css-1pahdxg-control, .ce-body .search-select .css-1pahdxg-control:focus, .ce-body .search-select .css-1pahdxg-control:hover {
-    border-radius: 10px !important;
-    outline: none !important;
-    border: none !important;
-    border-style: none !important;
-    box-shadow: none !important;
-    margin: 10px;
+.ce-body .search-select .ss-single-selected .placeholder {
+    background-color: #fff;
+    color: #000;
+    opacity: 1;
+}
+
+.ce-body .search-select .ss-content {
+    margin: 1px 0px;
+    width: 50%;
+}
+
+.ce-body .search-select .ss-content .ss-search input:focus {
+    box-shadow: none;
+}
+
+.ce-body .search-select .ss-content .ss-list .ss-option:hover {
+    color: #000;
+    background-color: #D9F0F1;
 }
 
 .ce-body .btm-btn {
@@ -202,6 +221,12 @@
     }
 }
 
+@media screen and (max-width: 550px) {
+    .ce-body .search-select .ss-single-selected, .ce-body .search-select .ss-content {
+        width: 80%;
+    }
+}
+
 @media screen and (max-width: 450px) {
     .ce-body .btm-btn {
         flex-direction: column;
@@ -209,6 +234,10 @@
 
     .ce-body .blue-button, .ce-body .white-button, .ce-body .file-btn .white-button .ce-body .file-btn .blue-button {
         margin: 5px auto !important;
+    }
+
+    .ce-body .search-select .ss-single-selected, .ce-body .search-select .ss-content {
+        width: 100%;
     }
 }
 
