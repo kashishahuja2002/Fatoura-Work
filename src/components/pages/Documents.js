@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Dropdown, Button } from "react-bootstrap";
 import './Documents.css';
 import InvoiceTable from "../InvoiceTable";
+import { useDispatch } from "react-redux";
+import { getInvoices } from "./Redux/documentsAction";
 
 const Documents = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getInvoices());
+    }, [])
+
     return (
         <Container fluid className="documents">
             <div className="doc-box box">

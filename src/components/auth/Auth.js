@@ -1,19 +1,12 @@
-import { React, useEffect } from "react";
+import { React } from "react";
 import './Auth.css';
 import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import { Container, Col, Row} from "reactstrap";
 import { Outlet, useLocation } from "react-router-dom";
 import sectionImage from "../../assets/images/section3.3.svg";
-import { useDispatch } from 'react-redux';
-import { getUser } from '../profile/Redux/profileActions';
 
 const Auth = () => {
     const location = useLocation().pathname.split('/')[2];
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getUser("/users/getUser"));
-    },[]);
     
     return (
         <>

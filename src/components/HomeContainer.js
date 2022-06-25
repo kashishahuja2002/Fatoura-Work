@@ -77,7 +77,7 @@ const HomeContainer = (props) => {
                                     <div className="right-header">
                                         <Dropdown className="blue-dropdown">
                                             <Dropdown.Toggle id="dropdown-basic" className="user" >
-                                                <img src={state.profile.user.data ? state.profile.user.data.profileImageName : avatar} alt="user" width={32} />
+                                                <img src={state.profile.user.data ? (state.profile.user.data.profileImageName ? state.profile.user.data.profileImageName : avatar) : avatar} alt="user" width={32} />
                                                 Hi, {state.profile.user.data ? state.profile.user.data.firstName : "User"}
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu align="end">

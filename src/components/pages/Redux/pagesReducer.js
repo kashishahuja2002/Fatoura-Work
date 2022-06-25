@@ -1,5 +1,6 @@
 const initialState = {
-    documentNumber: ''
+    documentNumber: '',
+    invoices: {}
 };
 
 const pagesReducer = (state=initialState, action) => {
@@ -9,6 +10,12 @@ const pagesReducer = (state=initialState, action) => {
                 ...state,
                 documentNumber: action.payload
             };
+
+        case "GET_INVOICES": 
+        return {
+            ...state,
+            invoices : action.payload
+        };
 
         default:
             return state;
