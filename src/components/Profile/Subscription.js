@@ -4,16 +4,12 @@ import '../InvoiceTable.css';
 import { Container, Row, Button, Col } from "react-bootstrap";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
-import { getPlans, upgradePlan } from "./Redux/profileActions";
+import { upgradePlan } from "./Redux/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Subscription = () => {
     const state = useSelector((store) => store.profile);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getPlans());
-    },[])
 
     let plans = {};
     if(state.plans.data) {
