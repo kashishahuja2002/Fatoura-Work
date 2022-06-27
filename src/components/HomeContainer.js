@@ -9,7 +9,7 @@ import { Navbar, Container, Offcanvas, Nav, Row, Col, Dropdown } from 'react-boo
 import './HomeContainer.css';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from './profile/Redux/profileActions';
+import { getUser, getPlans } from './profile/Redux/profileActions';
 
 const HomeContainer = (props) => {
     const navigate = useNavigate();
@@ -20,6 +20,7 @@ const HomeContainer = (props) => {
 
     useEffect(() => {
         dispatch(getUser("/users/getUser"));
+        dispatch(getPlans());
     },[]);
     
     const handleLogout = () => {
