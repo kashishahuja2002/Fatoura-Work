@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Dropdown, Button } from "react-bootstrap";
 import './Documents.css';
 import InvoiceTable from "../InvoiceTable";
 import { useDispatch } from "react-redux";
-import { getInvoices } from "./Redux/documentsAction";
+import { getInvoices, getDeletedInvoices } from "./Redux/documentsAction";
 
 const Documents = () => {
     const dispatch = useDispatch();
+    const [docType, setDocType] = useState('all');
 
     useEffect(() => {
         dispatch(getInvoices());
+        dispatch(getDeletedInvoices());
     }, [])
 
     return (
@@ -24,11 +26,11 @@ const Documents = () => {
                                     All Documents 
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1">All Documents</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Overdue</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Paid</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Unpaid</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Waste Bin</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocType('all')}}>All Documents</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocType('overdue')}}>Overdue</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocType('paid')}}>Paid</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocType('unpaid')}}>Unpaid</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocType('deleted')}}>Waste Bin</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Button className="blue-button">
@@ -44,7 +46,7 @@ const Documents = () => {
                 </Row>
 
                 <Row>
-                    <InvoiceTable />
+                    <InvoiceTable docType={docType} />
                 </Row>
 
             </div>

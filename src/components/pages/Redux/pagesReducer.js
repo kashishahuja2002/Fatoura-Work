@@ -1,6 +1,13 @@
 const initialState = {
     documentNumber: '',
-    invoices: {}
+    invoices: {},
+    deletedInvoices: {},
+    totalByCurrency: {},
+    totalByCurrencyStatus: {
+        paid:{},
+        unpaid:{},
+        overdue:{}
+    }
 };
 
 const pagesReducer = (state=initialState, action) => {
@@ -12,10 +19,35 @@ const pagesReducer = (state=initialState, action) => {
             };
 
         case "GET_INVOICES": 
-        return {
-            ...state,
-            invoices : action.payload
-        };
+            return {
+                ...state,
+                invoices: action.payload
+            };
+
+        case "GET_DELETED_INVOICES": 
+            return {
+                ...state,
+                deletedInvoices: action.payload
+            };
+
+        case "GET_TOTAL_BY_CURRENCY": 
+            return {
+                ...state,
+                totalByCurrency: action.payload
+            };
+
+        case "GET_TOTAL_BY_CURRENCY_STATUS":
+            var tbcs = {...state.totalByCurrencyStatus};
+            if(action.status=='paid')
+                tbcs.paid = action.payload;
+            else if(action.status=='unpaid')
+                tbcs.unpaid = action.payload;
+            else if(action.status=='overdue')
+                tbcs.overdue = action.payload;
+            return {
+                ...state,
+                totalByCurrencyStatus: tbcs
+            };
 
         default:
             return state;
