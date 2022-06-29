@@ -7,7 +7,8 @@ const initialState = {
         paid:{},
         unpaid:{},
         overdue:{}
-    }
+    },
+    singleInvoice: {}
 };
 
 const pagesReducer = (state=initialState, action) => {
@@ -56,6 +57,12 @@ const pagesReducer = (state=initialState, action) => {
                 ...state,
                 invoices: updInvoices
             };
+
+        case "GET_INVOICE_DATA":
+            return {
+                ...state,
+                singleInvoice: action.payload
+            }
 
         default:
             return state;
