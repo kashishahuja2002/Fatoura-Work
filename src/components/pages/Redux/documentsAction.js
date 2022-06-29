@@ -10,7 +10,7 @@ export const getInvoices = () => {
                     dispatch(invoices(response.data));
                 }
                 else 
-                    console.log("Response: ", response);
+                    console.log("Response: ", response.data);
             })
             .catch((error) => {
                 console.log("Error: ",error);
@@ -54,7 +54,6 @@ export const getTotalByCurrency = () => {
 
 export const getTotalByCurrencyStatus = (status) => {
     var url = '/invoice/getTotalByCurrency?status='+status;
-
     return (dispatch) => {
         http.HttpGet(url, "get")
             .then((response) => {
@@ -69,6 +68,25 @@ export const getTotalByCurrencyStatus = (status) => {
             })
     }
 }
+
+export const deleteInvoice = (id) => {
+    var url='/invoice/deleteInvoice/'+id;
+    return (dispatch) => {
+        http.HttpGet(url, "delete")
+            .then((response) => {
+                if(response.data.status == 200) {
+                    dispatch(delInvoice(id));
+                }
+                else 
+                    console.log("Response: ", response);
+            })
+            .catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+}
+
+
 
 const invoices = (data) => {
     return {
@@ -95,6 +113,13 @@ const totalByCurrencyStatus = (stat, data) => {
     return {
         type: pagesActionTypes.GET_TOTAL_BY_CURRENCY_STATUS,
         status: stat,
+        payload: data
+    }
+}
+
+const delInvoice = (data) => {
+    return {
+        type: pagesActionTypes.DELETE_INVOICE,
         payload: data
     }
 }
