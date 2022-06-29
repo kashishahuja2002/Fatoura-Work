@@ -34,7 +34,9 @@ const Subscription = () => {
         userPlan = state.plans.data.filter(plan => plan._id === subId);
         let date = new Date(state.user.data.subscription.expiryDate);
         expDate = date.toLocaleString('default', { month: 'long' }) + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
-        if(state.invoice && Object.keys(state.invoice).length !== 0)
+        console.log(userPlan);
+        console.log(state);
+        if(state.invoice.data)
             invoiceBalance = userPlan[0].features[0]["Form limitation"] - state.invoice.data;
     }
     
