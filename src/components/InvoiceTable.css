@@ -43,6 +43,7 @@
     width: 15px;
     position: relative;
     bottom: 2px;
+    pointer-events: none;
 }
 
 .invoice-table .flex-class {
