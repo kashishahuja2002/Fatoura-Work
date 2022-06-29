@@ -5,11 +5,11 @@ const ActionBtns = (props) => {
     const navigate = useNavigate();
 
     const handleEdit = (e) => {
-        navigate('/pages/createEdit?task=edit&type=Invoice&id='+e.target.id);
+        navigate('/pages/createEdit?task=edit&id='+e.target.id);
     }
 
     const handleView = (e) => {
-        navigate('/pages/view?type=Invoice&id='+e.target.id);
+        navigate('/pages/view?id='+e.target.id);
     }
 
     return(
