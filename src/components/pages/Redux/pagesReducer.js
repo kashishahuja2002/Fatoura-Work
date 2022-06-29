@@ -49,6 +49,14 @@ const pagesReducer = (state=initialState, action) => {
                 totalByCurrencyStatus: tbcs
             };
 
+        case "DELETE_INVOICE": 
+            var updInvoices = {...state.invoices};
+            updInvoices.data = updInvoices.data.filter((inv) => inv._id != action.payload);
+            return {
+                ...state,
+                invoices: updInvoices
+            };
+
         default:
             return state;
     }
