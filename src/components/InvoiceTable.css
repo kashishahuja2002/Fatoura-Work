@@ -65,3 +65,7 @@
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
 }
+
+.pl25 {
+    padding-left: 25px !important;
+}

@@ -3,14 +3,13 @@ import { Container, Row, Dropdown, Button } from "react-bootstrap";
 import './Documents.css';
 import InvoiceTable from "../InvoiceTable";
 import { useDispatch } from "react-redux";
-import { getInvoices, getDeletedInvoices, deleteInvoice } from "./Redux/documentsAction";
+import { getDeletedInvoices, deleteInvoice } from "./Redux/documentsAction";
 
 const Documents = () => {
     const dispatch = useDispatch();
-    const [docType, setDocType] = useState('All Documents');
+    const [docStatus, setDocStatus] = useState('All Documents');
 
     useEffect(() => {
-        dispatch(getInvoices());
         dispatch(getDeletedInvoices());
     }, [])
 
@@ -22,7 +21,7 @@ const Documents = () => {
 
     const handleDelete = () => {
         for(let i=0; i<checkedDocs.length; i++) {
-            if(checkedDocs[i] != undefined) {
+            if(checkedDocs[i] !== undefined) {
                 dispatch(deleteInvoice(checkedDocs[i]));
             }
         }
@@ -38,14 +37,14 @@ const Documents = () => {
                         <div className="dropdowns-div">
                             <Dropdown align="end" className="white-dropdown">
                                 <Dropdown.Toggle id="dropdown-basic" style={{textTransform: "capitalize"}}>
-                                    {docType}
+                                    {docStatus}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => {setDocType('All Documents')}}>All Documents</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {setDocType('overdue')}}>Overdue</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {setDocType('paid')}}>Paid</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {setDocType('unpaid')}}>Unpaid</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => {setDocType('Waste Bin')}}>Waste Bin</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocStatus('All Documents')}}>All Documents</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocStatus('overdue')}}>Overdue</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocStatus('paid')}}>Paid</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocStatus('unpaid')}}>Unpaid</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => {setDocStatus('Waste Bin')}}>Waste Bin</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Button className="blue-button" onClick={handleCopy}>
@@ -61,7 +60,7 @@ const Documents = () => {
                 </Row>
 
                 <Row>
-                    <InvoiceTable docType={docType} setCheckedDocs={setCheckedDocs} />
+                    <InvoiceTable docStatus={docStatus} setCheckedDocs={setCheckedDocs} parent="documents" />
                 </Row>
 
             </div>

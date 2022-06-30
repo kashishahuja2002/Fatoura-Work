@@ -9,8 +9,10 @@ export const getInvoices = () => {
                 if(response.data.status === 200) {
                     dispatch(invoices(response.data));
                 }
-                else 
+                else {
                     console.log("Response: ", response.data);
+                    dispatch(invoices(response.data));
+                }
             })
             .catch((error) => {
                 console.log("Error: ",error);

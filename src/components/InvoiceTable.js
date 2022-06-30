@@ -4,13 +4,14 @@ import { Input } from "reactstrap";
 import ActionBtns from "./ActionBtns";
 import './InvoiceTable.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTotalByCurrency, getTotalByCurrencyStatus } from "./pages/Redux/documentsAction";
+import { getInvoices, getTotalByCurrency, getTotalByCurrencyStatus } from "./pages/Redux/documentsAction";
 
 const InvoiceTable = (props) => {
     const state = useSelector((store) => store.pages);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getInvoices());
         dispatch(getTotalByCurrency());
         dispatch(getTotalByCurrencyStatus('paid'));
         dispatch(getTotalByCurrencyStatus('unpaid'));
@@ -37,24 +38,55 @@ const InvoiceTable = (props) => {
 
     }, [state.totalByCurrencyStatus.unpaid, state.totalByCurrencyStatus.overdue]);
 
+
+    // Filtering Documents
     let invoices = {};
-    if(state.invoices.data) {
-        if(props.docType === 'All Documents')
-            invoices = state.invoices.data;
-        else if(props.docType ==='Waste Bin') {
+    if(props.parent==="documents") {
+        if(props.docStatus ==='Waste Bin') {
             if(state.deletedInvoices.data)
                 invoices = state.deletedInvoices.data;
         }
-        else
-            invoices = state.invoices.data.filter(item => item.status === props.docType);
+        else if(state.invoices.data){
+            if(props.docStatus === 'All Documents')
+                invoices = state.invoices.data;
+            else 
+                invoices = state.invoices.data.filter(item => item.status === props.docStatus);
+        }
+    }
+    else {
+        if(state.filteredData.data) 
+            invoices = state.filteredData.data;
+        else 
+            invoices = state.invoices.data;
+
+        if(invoices && invoices.length>0) {
+            if(props.docStatus === "All Documents")
+                invoices = invoices;
+            else 
+                invoices = invoices.filter(item => item.status === props.docStatus);
+
+            if(props.docType === "All")
+                invoices = invoices;
+            else 
+                invoices = invoices.filter(item => item.type === props.docType);
+        }
     }
 
-    useEffect(() => {
-        document.getElementById('rootCheckBox').checked=false;
-        handleRootCheck();
-    }, [props.docType])
 
+    // CheckBox
     var inputElements = document.getElementsByClassName('docCheckbox');
+    useEffect(() => {
+        if(props.parent==="documents") {
+            document.getElementById('rootCheckBox').checked=false;
+            handleRootCheck();
+        }
+        else {
+            for(var i=0; inputElements[i]; ++i){
+                inputElements[i].checked = false;
+            }
+        }
+    }, [props.docStatus])
+
     const handleRootCheck = () => {
         var root = document.getElementById('rootCheckBox');
         if(root.checked) {
@@ -63,8 +95,8 @@ const InvoiceTable = (props) => {
             }
         }
         else {
-            for(var i=0; inputElements[i]; ++i){
-                inputElements[i].checked = false;
+            for(var j=0; inputElements[j]; ++j){
+                inputElements[j].checked = false;
             }
         }
         handleCheck();
@@ -79,17 +111,20 @@ const InvoiceTable = (props) => {
         };
         props.setCheckedDocs(checkedValue);
 
-        var checkedLength=0;
-        for(let i=0; i<checkedValue.length; i++) {
-            if(checkedValue[i] != undefined) {
-                checkedLength++;
+        if(props.parent==="documents") {
+            var checkedLength=0;
+            for(let i=0; i<checkedValue.length; i++) {
+                if(checkedValue[i] !== undefined) {
+                    checkedLength++;
+                }
             }
-        }
-        if(checkedLength < inputElements.length) {
-            document.getElementById('rootCheckBox').checked=false;
-        }
-        if(checkedLength === inputElements.length && inputElements.length != 0) {
-            document.getElementById('rootCheckBox').checked=true; 
+        
+            if(checkedLength < inputElements.length) {
+                document.getElementById('rootCheckBox').checked=false;
+            }
+            if(checkedLength === inputElements.length && inputElements.length !== 0) {
+                document.getElementById('rootCheckBox').checked=true; 
+            }
         }
     }
     
@@ -98,10 +133,15 @@ const InvoiceTable = (props) => {
             <Table responsive>
                 <thead>
                     <tr>
-                        <th className="rounded-l">
-                            <Input type="checkbox" id="rootCheckBox" onChange={handleRootCheck}></Input>
-                        </th>
-                        <th>Customer Name</th>
+                        {/* <th className="rounded-l">
+                            {props.parent === "documents" ? <Input type="checkbox" id="rootCheckBox" onChange={handleRootCheck}></Input> : ''}
+                        </th> */}
+                        {props.parent === "documents" &&  
+                            <th className="rounded-l">
+                                <Input type="checkbox" id="rootCheckBox" onChange={handleRootCheck}></Input>
+                            </th>
+                        }
+                        <th className={props.parent === "reports" ? "rounded-l pl25" : "" }>Customer Name</th>
                         <th>Type</th>
                         <th>Invoice #</th>
                         <th>Date Issued</th>
@@ -109,18 +149,22 @@ const InvoiceTable = (props) => {
                         <th>Tax</th>
                         <th>Amount Paid</th>
                         <th>Amount Due</th>
-                        <th>Total Amount</th>
-                        <th className="rounded-r">Actions</th>
+                        <th className={props.parent === "reports" ? "rounded-r" : ""}>Total Amount</th>
+                        {props.parent === "documents" &&
+                            <th className="rounded-r">Actions</th>
+                        }
                     </tr>
                 </thead>
                 {invoices && Object.keys(invoices).length !== 0 &&
                     <tbody>
                         {invoices.map((invoice =>  
                             <tr key={invoice._id}>
-                                <td>
-                                    <Input type="checkbox" className="docCheckbox" name="docCheckbox" value={invoice._id} onChange={handleCheck} ></Input>
-                                </td>
-                                <td>{invoice.to}</td>
+                                {props.parent === "documents" &&  
+                                    <td>
+                                        <Input type="checkbox" className="docCheckbox" name="docCheckbox" value={invoice._id} onChange={handleCheck} ></Input>
+                                    </td>
+                                }
+                                <td className={props.parent === "reports" ? "pl25" : "" }>{invoice.to}</td>
                                 <td>{invoice.type}</td>
                                 <td>{invoice.invoiceNumber}</td>
                                 <td>{new Date(invoice.invoiceDate).toISOString().slice(0,10)}</td>
@@ -129,9 +173,11 @@ const InvoiceTable = (props) => {
                                 <td className="text-center">{invoice.receiptAmount == null ? "0.00" : invoice.receiptAmount}{invoice.currencySymbol}</td>      
                                 <td className="text-center">{invoice.dueAmount === (null || 0) ? "0.00" : invoice.dueAmount}{invoice.currencySymbol}</td>
                                 <td className="text-center">{invoice.totalAmount === (null || 0) ? "0.00" : invoice.totalAmount}{invoice.currencySymbol}</td>
-                                <td>
-                                    <ActionBtns id={invoice._id} />
-                                </td>
+                                {props.parent === "documents" && 
+                                    <td>
+                                        <ActionBtns id={invoice._id} />
+                                    </td>
+                                }
                             </tr>
                         ))}
                     </tbody>

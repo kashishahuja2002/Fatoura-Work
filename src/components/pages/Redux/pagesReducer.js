@@ -8,7 +8,8 @@ const initialState = {
         unpaid:{},
         overdue:{}
     },
-    singleInvoice: {}
+    singleInvoice: {},
+    filteredData: {}
 };
 
 const pagesReducer = (state=initialState, action) => {
@@ -62,6 +63,12 @@ const pagesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 singleInvoice: action.payload
+            }
+
+        case "GET_FILTERED_DATA":
+            return {
+                ...state,
+                filteredData: action.payload
             }
 
         default:
