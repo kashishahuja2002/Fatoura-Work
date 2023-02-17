@@ -9,9 +9,9 @@ import Documents from './components/pages/Documents';
 import Reports from './components/pages/Reports';
 import CreateEdit from './components/pages/CreateEdit';
 import View from './components/pages/View';
-import Profile from './components/profile/Profile';
-import Subscription from './components/profile/Subscription';
-import Help from './components/profile/Help';
+import Profile from './components/Profile/Profile';
+import Subscription from './components/Profile/Subscription';
+import Help from './components/Profile/Help';
 import { useState } from 'react';
 import SubscribePlan from './components/auth/SubscribePlan';
 

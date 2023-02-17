@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import FatouraLogoDark from "../../assets/images/Fatoura-Logo-Dark.png";
 import './SubscribePlan.css';
-import '../profile/Subscription.css';
+import '../Profile/Subscription.css';
 import '../InvoiceTable.css';
 import { Container, Row, Button } from "react-bootstrap";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
-import { getPlans, upgradePlan, getUser } from "../profile/Redux/profileActions";
+import { getPlans, upgradePlan, getUser } from "../Profile/Redux/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import { subscribePlan } from "./Redux/authActions";
 import { useNavigate } from "react-router-dom";

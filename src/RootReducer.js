@@ -1,5 +1,5 @@
 import authReducer from "./components/auth/Redux/authReducer";
-import profileReducer from "./components/profile/Redux/profileReducer";
+import profileReducer from "./components/Profile/Redux/profileReducer";
 import pagesReducer from "./components/pages/Redux/pagesReducer";
 import { combineReducers } from "redux";
 
